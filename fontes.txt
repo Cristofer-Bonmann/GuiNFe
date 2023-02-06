@@ -1,0 +1,5 @@
+https://www.javatpoint.com/java-sqlite
+
+https://www.sqlitetutorial.net/sqlite-java/
+
+https://www.javatpoint.com/how-to-read-csv-file-in-java

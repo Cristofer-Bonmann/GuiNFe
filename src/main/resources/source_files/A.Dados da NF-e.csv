@@ -1,0 +1,6 @@
+#|ID|Campo|Descrição|Elemento|Pai|Tipo|Ocorrência|Tamanho|Observações
+|-|NFe|TAG raiz da NF-e|G|-||1-1||TAG raiz da NF-e
+1|A01|infNFe|Informações da NF-e|G|Raiz|-|1-1|-|Grupo que contém as informações da NF-e
+2|A02|versao|Versão do leiaute|A|A01|C|1-1|1-4|Versão do leiaute (v2.0)
+3|A03|Id|Identificador da TAG a ser assinada|ID|A01|C|1-1|47|Informar a Chave de Acesso precedida do literal ‘NFe’,
+4|A04|pk_nItem|Regra para que a numeração do item de detalhe da NF-e seja única.|RC|-|-|1-1||Regra de validação do item de detalhe da NF-e, campo de controle do Schema XML, o contribuinte não deve se preocupar com o preenchimento deste campo.
