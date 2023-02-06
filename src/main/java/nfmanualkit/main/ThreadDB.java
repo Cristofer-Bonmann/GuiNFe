@@ -11,29 +11,51 @@ public class ThreadDB extends Thread {
 
   @Override
   public void run() {
-    String aux = "Configurando o banco de dados. Aguarde";
-    System.out.print(aux);
+    String aux = "\rConfigurando o banco de dados. Aguarde ";
 
     while(!dbConfigurado) {
-      System.out.print(".");
+      switch (contador) {
+        case 0:
+          System.out.print(aux + "-");
+          break;
+
+        case 1:
+          System.out.print(aux + "\\");
+          break;
+
+        case 2:
+          System.out.print(aux + "|");
+          break;
+
+        case 3:
+          System.out.print(aux + "/");
+          break;
+
+        case 4:
+          System.out.print(aux + "-");
+          break;
+
+        default:
+          break;
+      }
 
       try {
-        Thread.sleep(1000);
+        Thread.sleep(400);
       } catch (InterruptedException e) {
         throw new RuntimeException(e);
       }
 
-      contador++;
-      if (contador == 3) {
+      if (contador == 4) {
         contador = 0;
-        System.out.print("\r" + aux);
       }
+
+      contador++;
     }
   }
 
   public void stopThread() {
-    System.out.print(" CONCLUÍDO");
+    System.out.println(" CONCLUÍDO");
     System.out.println();
-    dbConfigurado = false;
+    dbConfigurado = true;
   }
 }
