@@ -7,6 +7,19 @@ public class JFSchemaNfe extends JFrame {
 
   public JFSchemaNfe() {
     initComponents();
+    inits();
+    initEvents();
+  }
+
+  private void inits() {
+    jbDepreciar.setEnabled(false);
+  }
+
+  private void initEvents() {
+
+    jtSchemaNfe.getSelectionModel().addListSelectionListener(e -> {
+      jbDepreciar.setEnabled(jtSchemaNfe.getSelectedRow() != -1);
+    });
   }
 
   private JButton jbPesquisar;
@@ -16,7 +29,7 @@ public class JFSchemaNfe extends JFrame {
   private JTable jtSchemaNfe;
 
   public void initComponents() {
-    setTitle("jfSchemaNfe");
+    setTitle("NFSchemaKit");
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setLayout(new BorderLayout());
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
