@@ -30,10 +30,10 @@ public class Dao implements DaoPresenter {
   // TODO: 06/02/2023 inserir doc
   @Override
   public List<SchemaNfe> listar(String filtro) throws SQLException {
-    final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE %?%";
+    final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ?";
 
     final PreparedStatement preparedStatement = connection.prepareStatement(query);
-    preparedStatement.setString(1, filtro);
+    preparedStatement.setString(1, "%" + filtro + "%");
 
     final ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -29,7 +30,7 @@ public class ManualTest {
   }
 
   @Test
-  public void deveListarPorFiltro() {
+  public void deveListarPorFiltro() throws SQLException {
     final String filtro = "";
     final List<SchemaNfe> lista = Mockito.mock(List.class);
 

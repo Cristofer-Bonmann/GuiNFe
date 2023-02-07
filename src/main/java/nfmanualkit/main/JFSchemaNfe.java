@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   private Manual manual;
 
+  private TableModel<SchemaNfe> tmSchemaNfe;
+
   public JFSchemaNfe() {
     initComponents();
     inits();
@@ -22,12 +25,15 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   @Override
   public void exibir(List<SchemaNfe> lista) {
-
+    tmSchemaNfe.novaLista(lista);
   }
 
   private void inits() {
     manual = new Manual();
     manual.setView(this);
+
+    tmSchemaNfe = new TableModel(SchemaNfe.class);
+    jtSchemaNfe.setModel(tmSchemaNfe);
   }
 
   private void initEvents() {
@@ -41,7 +47,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
           try {
             manual.listar(jtfFiltro.getText());
           } catch (SQLException ex) {
-            // TODO: 06/02/2023 exibir notificação.
+            // TODO: 07/02/2023 exibir notificação.
+            ex.printStackTrace();
           }
         }
       }
