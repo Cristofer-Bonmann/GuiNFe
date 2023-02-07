@@ -17,6 +17,10 @@ public class Manual {
     this.daoPresenter = new Dao();
   }
 
+  public void setView(ManualView view) {
+    this.view = view;
+  }
+
   public void listar(String filtro) {
     final List<SchemaNfe> lista = daoPresenter.listar(filtro);
     view.exibir(lista);

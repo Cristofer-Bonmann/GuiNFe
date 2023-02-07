@@ -15,12 +15,18 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   public JFSchemaNfe() {
     initComponents();
+    inits();
     initEvents();
   }
 
   @Override
   public void exibir(List<SchemaNfe> lista) {
 
+  }
+
+  private void inits() {
+    manual = new Manual();
+    manual.setView(this);
   }
 
   private void initEvents() {
