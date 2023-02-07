@@ -9,6 +9,9 @@ public class Main {
 
       final Inicializador inicializador = new Inicializador();
       inicializador.init();
+
+      final JFSchemaNfe jfSchemaNfe = new JFSchemaNfe();
+      jfSchemaNfe.setVisible(true);
     });
   }
 }
