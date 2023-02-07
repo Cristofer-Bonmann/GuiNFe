@@ -1,29 +1,42 @@
 package nfmanualkit.main;
 
+import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.view.ManualView;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.List;
 
-public class JFSchemaNfe extends JFrame {
+public class JFSchemaNfe extends JFrame implements ManualView {
+
+  private Manual manual;
 
   public JFSchemaNfe() {
     initComponents();
-    inits();
     initEvents();
   }
 
-  private void inits() {
-    jbDepreciar.setEnabled(false);
+  @Override
+  public void exibir(List<SchemaNfe> lista) {
+
   }
 
   private void initEvents() {
 
-    jtSchemaNfe.getSelectionModel().addListSelectionListener(e -> {
-      jbDepreciar.setEnabled(jtSchemaNfe.getSelectedRow() != -1);
+    jtfFiltro.addKeyListener(new KeyAdapter() {
+      @Override
+      public void keyReleased(KeyEvent e) {
+        super.keyReleased(e);
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+          manual.listar(jtfFiltro.getText());
+        }
+      }
     });
   }
 
-  private JButton jbPesquisar;
-  private JButton jbDepreciar;
   private JTextField jtfFiltro;
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
@@ -34,27 +47,18 @@ public class JFSchemaNfe extends JFrame {
     setLayout(new BorderLayout());
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    jbPesquisar = new JButton(new ImageIcon(getClass().getResource("/lupa.png")));
-
     jtfFiltro = new JTextField();
     jtfFiltro.setPreferredSize(new Dimension(300, 25));
 
     jtSchemaNfe = new JTable();
     jspSchemaNfe = new JScrollPane(jtSchemaNfe);
 
-    jbDepreciar = new JButton("Depreciar");
-
     final JPanel jpTop = new JPanel(new BorderLayout());
     final JPanel jpTopII = new JPanel();
-    final JPanel jpTopIII = new JPanel();
 
     jpTopII.setLayout(new FlowLayout());
     jpTopII.add(jtfFiltro);
-    jpTopII.add(jbPesquisar);
 
-    jpTopIII.add(jbDepreciar);
-
-    jpTop.add(jpTopIII, BorderLayout.WEST);
     jpTop.add(jpTopII, BorderLayout.CENTER);
 
     JScrollPane scrollPane = new JScrollPane(jspSchemaNfe);
