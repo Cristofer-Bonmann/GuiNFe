@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.List;
 
 public class JFSchemaNfe extends JFrame implements ManualView {
@@ -37,7 +38,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         super.keyReleased(e);
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-          manual.listar(jtfFiltro.getText());
+          try {
+            manual.listar(jtfFiltro.getText());
+          } catch (SQLException ex) {
+            // TODO: 06/02/2023 exibir notificação.
+          }
         }
       }
     });
