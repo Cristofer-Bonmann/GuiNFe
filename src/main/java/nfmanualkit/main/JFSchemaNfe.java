@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.util.HtmlRenderer;
 import nfmanualkit.util.JTableAjusteColunas;
 import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
@@ -38,6 +39,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     tmSchemaNfe = new TableModel(SchemaNfe.class);
     jtSchemaNfe.setModel(tmSchemaNfe);
+    jtSchemaNfe.getColumnModel().getColumn(9).setCellRenderer(new HtmlRenderer());
 
     jtSchemaNfe.setRowHeight(25);
   }
