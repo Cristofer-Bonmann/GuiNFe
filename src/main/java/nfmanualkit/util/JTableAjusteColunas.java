@@ -15,7 +15,7 @@ import java.awt.*;
  *
  * <pre>
  *   private JTable jTable = new JTable();
- *   JTableAjusteColunas.ajustarColunas(jTable);
+ *   {@link JTableAjusteColunas}.ajustarColunas(jTable);
  * </pre>
  */
 public class JTableAjusteColunas {
