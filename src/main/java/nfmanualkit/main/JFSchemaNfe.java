@@ -74,6 +74,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     jtSchemaNfe = new JTable();
     jspSchemaNfe = new JScrollPane(jtSchemaNfe);
+    JTableAjusteColunas.alinharHeader(jtSchemaNfe);
 
     final JPanel jpTop = new JPanel(new BorderLayout());
     final JPanel jpTopII = new JPanel();

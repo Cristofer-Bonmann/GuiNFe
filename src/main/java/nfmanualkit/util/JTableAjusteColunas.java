@@ -1,6 +1,8 @@
 package nfmanualkit.util;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -51,5 +53,16 @@ public class JTableAjusteColunas {
 
       tableColumn.setPreferredWidth(preferredWidth + 50);
     }
+  }
+
+  /**
+   * Alinha o texto do header do JTable para a esquerda.
+   * @param jTable componente com o {@link JTableHeader} que será alinhado.
+   */
+  public static void alinharHeader(JTable jTable) {
+    final JTableHeader header = jTable.getTableHeader();
+    final DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
+    renderer.setHorizontalAlignment(SwingConstants.LEFT);
+    header.setDefaultRenderer(renderer);
   }
 }
