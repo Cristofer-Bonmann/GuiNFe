@@ -15,16 +15,17 @@ public class Dao implements DaoPresenter {
 
   private Connection connection;
 
-  private boolean conectado = false;
-
   public Dao() {
     connectPresenter = new Connect();
     connection = connectPresenter.conectarBancoDeDados();
-    try {
-      conectado = !connection.isClosed();
-    } catch (SQLException e) {
-      System.err.println(">>> Não foi possível verificar a conexão do banco de dados:\n" + e.getMessage());
-    }
+  }
+
+  // TODO: 08/02/2023 inserir doc
+  private Connection getConnection() throws SQLException {
+    if (this.connection == null || this.connection.isClosed())
+      this.connection = connectPresenter.conectarBancoDeDados();
+
+    return this.connection;
   }
 
   // TODO: 06/02/2023 inserir doc
@@ -32,7 +33,7 @@ public class Dao implements DaoPresenter {
   public List<SchemaNfe> listar(String filtro) throws SQLException {
     final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ?";
 
-    final PreparedStatement preparedStatement = connection.prepareStatement(query);
+    final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
     preparedStatement.setString(1, "%" + filtro + "%");
 
     final ResultSet resultSet = preparedStatement.executeQuery();
@@ -66,6 +67,10 @@ public class Dao implements DaoPresenter {
 
       lista.add(schemaNfe);
     }
+
+    resultSet.close();
+    preparedStatement.close();
+    connection.close();
 
     return lista;
   }
