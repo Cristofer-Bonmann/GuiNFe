@@ -22,8 +22,16 @@ public class Manual {
     this.view = view;
   }
 
+
+  // TODO: 08/02/2023 inserir doc
+  public List<SchemaNfe> listarTodos() throws SQLException {
+    final List<SchemaNfe> lista = daoPresenter.listar();
+    view.exibir(lista);
+    return lista;
+  }
+
   // TODO: 06/02/2023 inserir doc
-  public void listar(String filtro) throws SQLException {
+  public void listarPorFiltro(String filtro) throws SQLException {
     final List<SchemaNfe> lista = daoPresenter.listar(filtro);
     view.exibir(lista);
   }

@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -42,6 +44,20 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   private void initEvents() {
 
+    this.addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowOpened(WindowEvent e) {
+        super.windowOpened(e);
+
+        try {
+          manual.listarTodos();
+        } catch (SQLException ex) {
+          // TODO: 08/02/2023 exibir notificação.
+          throw new RuntimeException(ex);
+        }
+      }
+    });
+
     jtfFiltro.addKeyListener(new KeyAdapter() {
       @Override
       public void keyReleased(KeyEvent e) {
@@ -49,7 +65,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
           try {
-            manual.listar(jtfFiltro.getText());
+            manual.listarPorFiltro(jtfFiltro.getText());
           } catch (SQLException ex) {
             // TODO: 07/02/2023 exibir notificação.
             ex.printStackTrace();

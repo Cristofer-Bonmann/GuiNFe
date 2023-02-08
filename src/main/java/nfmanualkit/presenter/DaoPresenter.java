@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface DaoPresenter {
 
+  List<SchemaNfe> listar() throws SQLException;
+
   List<SchemaNfe> listar(String filtro) throws SQLException;
 }
