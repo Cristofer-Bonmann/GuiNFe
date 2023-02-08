@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.util.JTableAjusteColunas;
 import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
 
@@ -26,6 +27,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   @Override
   public void exibir(List<SchemaNfe> lista) {
     tmSchemaNfe.novaLista(lista);
+    JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
   }
 
   private void inits() {
@@ -34,6 +36,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     tmSchemaNfe = new TableModel(SchemaNfe.class);
     jtSchemaNfe.setModel(tmSchemaNfe);
+
+    jtSchemaNfe.setRowHeight(25);
   }
 
   private void initEvents() {
@@ -79,9 +83,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     jpTop.add(jpTopII, BorderLayout.CENTER);
 
-    JScrollPane scrollPane = new JScrollPane(jspSchemaNfe);
-
     add(jpTop, BorderLayout.NORTH);
-    add(scrollPane, BorderLayout.CENTER);
+    add(jspSchemaNfe, BorderLayout.CENTER);
   }
 }
