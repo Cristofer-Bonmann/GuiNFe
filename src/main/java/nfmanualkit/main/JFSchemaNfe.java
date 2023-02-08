@@ -3,6 +3,7 @@ package nfmanualkit.main;
 import nfmanualkit.entity.SchemaNfe;
 import nfmanualkit.util.HtmlRenderer;
 import nfmanualkit.util.JTableAjusteColunas;
+import nfmanualkit.util.AlturaRenderer;
 import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
 
@@ -21,6 +22,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   private TableModel<SchemaNfe> tmSchemaNfe;
 
+  private AlturaRenderer adjuster;
+
   public JFSchemaNfe() {
     initComponents();
     inits();
@@ -31,6 +34,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   public void exibir(List<SchemaNfe> lista) {
     tmSchemaNfe.novaLista(lista);
     JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
+    adjuster.adjustRowHeights();
   }
 
   private void inits() {
@@ -40,6 +44,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     tmSchemaNfe = new TableModel(SchemaNfe.class);
     jtSchemaNfe.setModel(tmSchemaNfe);
     jtSchemaNfe.getColumnModel().getColumn(9).setCellRenderer(new HtmlRenderer());
+    adjuster = new AlturaRenderer(jtSchemaNfe);
   }
 
   private void initEvents() {
