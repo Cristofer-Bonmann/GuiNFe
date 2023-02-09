@@ -16,6 +16,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class JFSchemaNfe extends JFrame implements ManualView {
 
@@ -34,6 +37,10 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     tmSchemaNfe.novaLista(lista);
     JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
     tcrAltura.adjustRowHeights();
+
+    final Object[][] data = manual.getMatrizIdGrupo(lista);
+    final Object[] columnNames = manual.getVetorColunaIdGrupo();
+    jtSchemaNfeLateral.setModel(new DefaultTableModel(data, columnNames));
   }
 
   private void inits() {
