@@ -94,6 +94,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jtfFiltro.setPreferredSize(new Dimension(300, 25));
 
     jtSchemaNfe = new JTable();
+    jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     jspSchemaNfe = new JScrollPane(jtSchemaNfe);
     JTableAjusteColunas.alinharHeader(jtSchemaNfe);
 

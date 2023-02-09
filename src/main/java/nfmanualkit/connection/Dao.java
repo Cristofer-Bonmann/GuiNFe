@@ -8,19 +8,29 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: 06/02/2023 inserir doc
+/**
+ * Classe responsável por acessar, persistir ou remover dados do banco de dados.
+ */
 public class Dao implements DaoPresenter {
 
   private ConnectPresenter connectPresenter;
 
   private Connection connection;
 
+  /**
+   * Construtor da classe. Instância a interface {@link Connect} e conecta com o banco de dados.
+   */
   public Dao() {
     connectPresenter = new Connect();
     connection = connectPresenter.conectarBancoDeDados();
   }
 
-  // TODO: 08/02/2023 inserir doc
+  /**
+   * Se a conexão atual com o banco for igual a 'null' ou estiver fechada, uma nova conexão será aberta.
+   * @return retorna uma conexão com o banco de dados.
+   *
+   * @throws SQLException
+   */
   private Connection getConnection() throws SQLException {
     if (this.connection == null || this.connection.isClosed())
       this.connection = connectPresenter.conectarBancoDeDados();
@@ -28,7 +38,12 @@ public class Dao implements DaoPresenter {
     return this.connection;
   }
 
-  // TODO: 08/02/2023 inserir doc
+  /**
+   * Lista todos os resultados da tabela 'schema_nfe'.
+   * @return lista de objeto {@link SchemaNfe}.
+   *
+   * @throws SQLException
+   */
   @Override
   public List<SchemaNfe> listar() throws SQLException {
     final String query = "SELECT * FROM schema_nfe ORDER BY id";
@@ -73,7 +88,13 @@ public class Dao implements DaoPresenter {
     return lista;
   }
 
-  // TODO: 06/02/2023 inserir doc
+  /**
+   * Lista todos os resultados da tabela 'schema_nfe' filtrando por: idGrupo.
+   * @param filtro termo que filtrará os resultados.
+   * @return lista de objeto {@link SchemaNfe};
+   *
+   * @throws SQLException
+   */
   @Override
   public List<SchemaNfe> listar(String filtro) throws SQLException {
     final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? ORDER BY id";
