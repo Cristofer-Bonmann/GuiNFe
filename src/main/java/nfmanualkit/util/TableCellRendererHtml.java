@@ -8,7 +8,7 @@ import java.awt.*;
 
 /**
  * Classe reponsável por aplicar HTML no conteúdo das células de uma coluna específica de uma JTable. Também substitui
- * o caractere de quebra de linha do Java("\\n") para quebra de linha do HTML(br).
+ * o caractere de quebra de linha do Java("\\n") para quebra de linha do HTML(br) e altera a cor das células.
  *
  * <pre>
  *   Como usar:
@@ -21,7 +21,7 @@ import java.awt.*;
 public class TableCellRendererHtml extends DefaultTableCellRenderer {
 
   /**
-   * Aplica formatação HTML no conteúdo das células com quebra de linha.
+   * Aplica formatação HTML no conteúdo das células com quebra de linha e coloração de linhas.
    *
    * @param table  the <code>JTable</code>
    * @param value  the value to assign to the cell at
