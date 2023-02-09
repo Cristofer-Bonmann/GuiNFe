@@ -5,8 +5,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
+// TODO: 09/02/2023 inserir doc
 public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
 
+  // TODO: 09/02/2023 inserir doc
   public RowHeaderRenderer(JTable table) {
     JTableHeader header = table.getTableHeader();
     setOpaque(true);
@@ -17,6 +19,7 @@ public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
     setFont(header.getFont());
   }
 
+  // TODO: 09/02/2023 inserir doc
   @Override
   public Component getTableCellRendererComponent(JTable table, Object value,
                                                  boolean isSelected, boolean hasFocus, int row, int column) {

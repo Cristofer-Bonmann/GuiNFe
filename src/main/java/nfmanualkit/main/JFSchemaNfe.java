@@ -41,6 +41,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     final Object[][] data = manual.getMatrizIdGrupo(lista);
     final Object[] columnNames = manual.getVetorColunaIdGrupo();
     jtSchemaNfeLateral.setModel(new DefaultTableModel(data, columnNames));
+
+    IntStream.range(0, lista.size()).forEachOrdered(index -> {
+      final int rowHeight = jtSchemaNfe.getRowHeight(index);
+      jtSchemaNfeLateral.setRowHeight(index, rowHeight);
+    });
   }
 
   private void inits() {
@@ -112,7 +117,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     jtSchemaNfeLateral = new JTable();
     jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(50, 0));
+    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(70, 0));
     jtSchemaNfeLateral.setDefaultRenderer(Object.class, new RowHeaderRenderer(jtSchemaNfe));
     jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
 
