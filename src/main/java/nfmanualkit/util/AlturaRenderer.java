@@ -1,8 +1,11 @@
 package nfmanualkit.util;
 
+import nfmanualkit.entity.SchemaNfe;
+
 import java.awt.*;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 
 /**
  * Classe responsável por redimensionar a altura das linha de um componente {@link JTable} dinâmicamente.
@@ -52,19 +55,20 @@ public class AlturaRenderer implements TableCellRenderer {
    *
    * @return Component
    */
-  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+                                                 int row, int column) {
 
     // Obtém o renderizador padrão da célula
     final TableCellRenderer renderer = table.getDefaultRenderer(table.getColumnClass(column));
-    final Component c = renderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+    final Component component = renderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
     // Ajusta a altura da linha de acordo com o conteúdo
-    int height = c.getPreferredSize().height;
+    int height = component.getPreferredSize().height;
     if (height > table.getRowHeight(row)) {
       table.setRowHeight(row, height);
     }
 
-    return c;
+    return component;
   }
 
   /**

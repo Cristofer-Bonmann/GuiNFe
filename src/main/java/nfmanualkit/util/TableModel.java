@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO: 08/02/2023 inserir doc
 public class TableModel<T> extends AbstractTableModel {
 
   private Class<?> aClass;
@@ -75,8 +76,14 @@ public class TableModel<T> extends AbstractTableModel {
     }
   }
 
+  // TODO: 08/02/2023 inserir doc
   public void novaLista(List<T> lista) {
     this.list = lista;
     fireTableDataChanged();
+  }
+
+  // TODO: 08/02/2023 inserir doc
+  public T getValue(int row) {
+    return list.get(row);
   }
 }

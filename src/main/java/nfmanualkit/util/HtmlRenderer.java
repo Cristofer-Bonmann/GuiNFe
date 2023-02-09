@@ -1,5 +1,7 @@
 package nfmanualkit.util;
 
+import nfmanualkit.entity.SchemaNfe;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
