@@ -1,13 +1,12 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
-import nfmanualkit.util.TableCellRendererHtml;
-import nfmanualkit.util.JTableAjusteColunas;
-import nfmanualkit.util.TableCellRendererAltura;
-import nfmanualkit.util.TableModel;
+import nfmanualkit.util.*;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -90,6 +89,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
 
+  private JTable jtSchemaNfeLateral;
+
   public void initComponents() {
     setTitle("NFSchemaKit");
     setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -103,6 +104,12 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     jspSchemaNfe = new JScrollPane(jtSchemaNfe);
     JTableAjusteColunas.alinharHeader(jtSchemaNfe);
+
+    jtSchemaNfeLateral = new JTable();
+    jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(50, 0));
+    jtSchemaNfeLateral.setDefaultRenderer(Object.class, new RowHeaderRenderer(jtSchemaNfe));
+    jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
 
     final JPanel jpTop = new JPanel(new BorderLayout());
     final JPanel jpTopII = new JPanel();
