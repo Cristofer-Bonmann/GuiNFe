@@ -6,6 +6,12 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  * Classe responsável por redimensionar a altura das linha de um componente {@link JTable} dinâmicamente.
+ *
+ * <pre>
+ *   final {@link JTable} jTable = new JTable();
+ *   final {@link AlturaRenderer} alturaRenderer = new AlturaRenderer(jTable);
+ *   alturaRenderer.adjustRowHeights();
+ * </pre>
  */
 public class AlturaRenderer implements TableCellRenderer {
   private final JTable table;
