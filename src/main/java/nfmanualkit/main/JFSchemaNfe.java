@@ -5,6 +5,7 @@ import nfmanualkit.util.*;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -19,9 +20,7 @@ import java.util.List;
 public class JFSchemaNfe extends JFrame implements ManualView {
 
   private Manual manual;
-
   private TableModel<SchemaNfe> tmSchemaNfe;
-
   private TableCellRendererAltura tcrAltura;
 
   public JFSchemaNfe() {
@@ -88,7 +87,6 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   private JTextField jtfFiltro;
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
-
   private JTable jtSchemaNfeLateral;
 
   public void initComponents() {
