@@ -1,7 +1,5 @@
 package nfmanualkit.util;
 
-import nfmanualkit.entity.SchemaNfe;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -14,11 +12,11 @@ import java.awt.*;
  *   Como usar:
  *
  *   final {@link JTable} jTable = new JTable();
- *   final {@link HtmlRenderer} htmlRenderer = new HtmlRenderer();
+ *   final {@link TableCellRendererHtml} htmlRenderer = new HtmlRenderer();
  *   jTable.getColumnModel().getColumn(9).setCellRenderer(htmlRenderer);
  * </pre>
  */
-public class HtmlRenderer extends DefaultTableCellRenderer {
+public class TableCellRendererHtml extends DefaultTableCellRenderer {
 
   /**
    * Aplica formatação HTML no conteúdo das células com quebra de linha.

@@ -1,9 +1,9 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
-import nfmanualkit.util.HtmlRenderer;
+import nfmanualkit.util.TableCellRendererHtml;
 import nfmanualkit.util.JTableAjusteColunas;
-import nfmanualkit.util.AlturaRenderer;
+import nfmanualkit.util.TableCellRendererAltura;
 import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
 
@@ -22,7 +22,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   private TableModel<SchemaNfe> tmSchemaNfe;
 
-  private AlturaRenderer adjuster;
+  private TableCellRendererAltura tcrAltura;
 
   public JFSchemaNfe() {
     initComponents();
@@ -34,7 +34,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   public void exibir(List<SchemaNfe> lista) {
     tmSchemaNfe.novaLista(lista);
     JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
-    adjuster.adjustRowHeights();
+    tcrAltura.adjustRowHeights();
   }
 
   private void inits() {
@@ -43,8 +43,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     tmSchemaNfe = new TableModel(SchemaNfe.class);
     jtSchemaNfe.setModel(tmSchemaNfe);
-    jtSchemaNfe.getColumnModel().getColumn(9).setCellRenderer(new HtmlRenderer());
-    adjuster = new AlturaRenderer(jtSchemaNfe);
+    jtSchemaNfe.getColumnModel().getColumn(9).setCellRenderer(new TableCellRendererHtml());
+    tcrAltura = new TableCellRendererAltura(jtSchemaNfe);
   }
 
   private void initEvents() {

@@ -1,29 +1,26 @@
 package nfmanualkit.util;
 
-import nfmanualkit.entity.SchemaNfe;
-
 import java.awt.*;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
 /**
  * Classe responsável por redimensionar a altura das linha de um componente {@link JTable} dinâmicamente.
  *
  * <pre>
  *   final {@link JTable} jTable = new JTable();
- *   final {@link AlturaRenderer} alturaRenderer = new AlturaRenderer(jTable);
+ *   final {@link TableCellRendererAltura} alturaRenderer = new AlturaRenderer(jTable);
  *   alturaRenderer.adjustRowHeights();
  * </pre>
  */
-public class AlturaRenderer implements TableCellRenderer {
+public class TableCellRendererAltura implements TableCellRenderer {
   private final JTable table;
 
   /**
    * Construtor da classe. Recebe o componente que será renderizado.
    * @param table componente {@link JTable}.
    */
-  public AlturaRenderer(JTable table) {
+  public TableCellRendererAltura(JTable table) {
     this.table = table;
   }
 
