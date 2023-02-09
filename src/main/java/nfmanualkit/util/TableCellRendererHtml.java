@@ -1,5 +1,7 @@
 package nfmanualkit.util;
 
+import nfmanualkit.entity.SchemaNfe;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -34,8 +36,26 @@ public class TableCellRendererHtml extends DefaultTableCellRenderer {
   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
                                                  int row, int column) {
 
-    JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-    label.setText("<html>" + value.toString().replace("\\n", "<br>") + "</html>");
+    final JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+    final nfmanualkit.util.TableModel tableModel = (nfmanualkit.util.TableModel) table.getModel();
+    final SchemaNfe schemaNfe = (SchemaNfe) tableModel.getValue(row);
+
+
+    if (schemaNfe != null && schemaNfe.getIdGrupo().equals("ID")) {
+      label.setBackground(Color.LIGHT_GRAY);
+
+    } else {
+      if (isSelected) {
+        label.setBackground(new Color(168, 194, 255));
+      } else {
+        label.setBackground(Color.WHITE);
+      }
+    }
+
+    if (column == 9) {
+      label.setText("<html>" + value.toString().replace("\\n", "<br>") + "</html>");
+    }
 
     return label;
   }

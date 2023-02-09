@@ -8,6 +8,7 @@ import nfmanualkit.util.TableModel;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -43,8 +44,13 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     tmSchemaNfe = new TableModel(SchemaNfe.class);
     jtSchemaNfe.setModel(tmSchemaNfe);
-    jtSchemaNfe.getColumnModel().getColumn(9).setCellRenderer(new TableCellRendererHtml());
     tcrAltura = new TableCellRendererAltura(jtSchemaNfe);
+
+    final TableCellRendererHtml tcrHtml = new TableCellRendererHtml();
+    final TableColumnModel columnModel = jtSchemaNfe.getColumnModel();
+    for (int i = 0; i < columnModel.getColumnCount(); i++) {
+      columnModel.getColumn(i).setCellRenderer(tcrHtml);
+    }
   }
 
   private void initEvents() {
