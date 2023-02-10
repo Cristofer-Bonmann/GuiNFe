@@ -1,6 +1,7 @@
 package nfmanualkit.enumeracao;
 
 public enum EFiltro {
+  NENHUM("", ""),
   IDGRUPO("idGrupo", "ID Grupo"),
   CAMPO("campo", "Campo"),
   DESCRICAO("descricao", "Descrição"),
@@ -9,7 +10,7 @@ public enum EFiltro {
   TIPO("tipo", "Tipo"),
   OCORRENCIA("ocorrencia", "Ocorrência"),
   TAMANHO("tamanho", "Tamanho"),
-  OBSERVACAO("observacao", "Obervação");
+  OBSERVACAO("observacao", "Observações");
 
   private String filtro;
   private String rotulo;
@@ -21,6 +22,10 @@ public enum EFiltro {
 
   public String getFiltro() {
     return this.filtro;
+  }
+
+  public String getRotulo() {
+    return this.rotulo;
   }
 
   @Override

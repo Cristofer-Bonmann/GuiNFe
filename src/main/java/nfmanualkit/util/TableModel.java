@@ -1,10 +1,14 @@
 package nfmanualkit.util;
 
+import nfmanualkit.annotation.Column;
+import nfmanualkit.enumeracao.EFiltro;
+
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // TODO: 08/02/2023 inserir doc
 public class TableModel<T> extends AbstractTableModel {
@@ -28,12 +32,24 @@ public class TableModel<T> extends AbstractTableModel {
   }
 
   private List<Field> getFields() {
-    return Arrays.asList(aClass.getDeclaredFields());
+    return Arrays.asList(aClass.getDeclaredFields()).stream().filter(field -> field.isAnnotationPresent(Column.class))
+            .collect(Collectors.toList());
   }
 
   @Override
   public String getColumnName(int columnIndex) {
-    return getFields().get(columnIndex).getName();
+    String nomeColumna = "";
+
+    final Field field = getFields().get(columnIndex);
+    final boolean annotationPresent = field.isAnnotationPresent(Column.class);
+
+    if (annotationPresent) {
+      final Column annotation = field.getAnnotation(Column.class);
+      final EFiltro eFiltro = annotation.nomeColuna();
+      nomeColumna = eFiltro.getRotulo();
+    }
+
+    return nomeColumna;
   }
 
   @Override
