@@ -125,8 +125,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     jtSchemaNfeLateral = new JTable();
     jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(70, 0));
-    jtSchemaNfeLateral.setDefaultRenderer(Object.class, new RowHeaderRenderer(jtSchemaNfe));
+    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(75, 0));
+    jtSchemaNfeLateral.setDefaultRenderer(Object.class, new TableCellRendererHeader(jtSchemaNfe));
     jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
 
     final JPanel jpTop = new JPanel(new BorderLayout());
