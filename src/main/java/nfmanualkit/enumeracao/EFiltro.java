@@ -17,4 +17,8 @@ public enum EFiltro {
     this.filtro = filtro;
   }
 
+  public String getFiltro() {
+    return this.filtro;
+  }
+
   }

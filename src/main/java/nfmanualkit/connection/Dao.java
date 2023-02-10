@@ -90,7 +90,7 @@ public class Dao implements DaoPresenter {
   }
 
   protected String montarQuery(EFiltro eFiltro) {
-    final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? ORDER BY id";
+    final String query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " LIKE ? ORDER BY id";
     return query;
   }
 

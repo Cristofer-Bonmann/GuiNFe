@@ -22,6 +22,14 @@ public class DaoTest {
   }
 
   @Test
+  public void deveMontarQueryFiltroCampo() {
+    final String query = dao.montarQuery(EFiltro.CAMPO);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE campo LIKE ? ORDER BY id";
+    assertThat(query, is(esperado));
+  }
+
+  @Test
   public void deveMontarQueryFiltroIdGrupo() {
     final String query = dao.montarQuery(EFiltro.IDGRUPO);
 
