@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.connection.Dao;
 import nfmanualkit.view.ManualView;
@@ -76,5 +77,11 @@ public class Manual {
     final Object[] columnNames = new Object[1];
     columnNames[0] = "";
     return columnNames;
+  }
+
+  // TODO: 10/02/2023 inserir doc
+  public void selecionarFiltro(String nomeColuna) {
+    final EFiltro eFiltro = EFiltro.getPorRotulo(nomeColuna);
+    view.setSelectedEFiltro(eFiltro);
   }
 }

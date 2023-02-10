@@ -9,10 +9,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -35,6 +32,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
     tcrAltura.adjustRowHeights();
     ajustarAlturaLateral(lista);
+  }
+
+  @Override
+  public void setSelectedEFiltro(EFiltro eFiltro) {
+    jcbFiltro.setSelectedItem(eFiltro);
   }
 
   /**
@@ -101,6 +103,17 @@ public class JFSchemaNfe extends JFrame implements ManualView {
             ex.printStackTrace();
           }
         }
+      }
+    });
+
+    jtSchemaNfe.getTableHeader().addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+
+        final int colunaPoint = jtSchemaNfe.getTableHeader().columnAtPoint(e.getPoint());
+        final String headerValue = jtSchemaNfe.getColumnModel().getColumn(colunaPoint).getHeaderValue().toString();
+        manual.selecionarFiltro(headerValue);
       }
     });
   }

@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.view.ManualView;
 import org.hamcrest.CoreMatchers;
@@ -34,6 +35,17 @@ public class ManualTest {
   @Before
   public void setUp() {
     MockitoAnnotations.openMocks(this);
+  }
+
+  @Test
+  public void deveSelecionarFiltro() {
+    final String nomeColuna = EFiltro.IDGRUPO.getRotulo();
+
+    doNothing().when(view).setSelectedEFiltro(EFiltro.IDGRUPO);
+    manual.selecionarFiltro(nomeColuna);
+
+    verify(view).setSelectedEFiltro(EFiltro.IDGRUPO);
+    verifyNoMoreInteractions(view);
   }
 
   @Test

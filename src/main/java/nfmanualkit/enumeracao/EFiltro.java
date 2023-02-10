@@ -20,6 +20,20 @@ public enum EFiltro {
     this.rotulo = rotulo;
   }
 
+  // TODO: 10/02/2023 inserir doc
+  public static EFiltro getPorRotulo(String rotulo) {
+    EFiltro eFiltroRotulo = null;
+
+    for (EFiltro eFiltro : EFiltro.values()) {
+      if (eFiltro.getRotulo().equals(rotulo)) {
+        eFiltroRotulo = eFiltro;
+        break;
+      }
+    }
+
+    return eFiltroRotulo;
+  }
+
   public String getFiltro() {
     return this.filtro;
   }
