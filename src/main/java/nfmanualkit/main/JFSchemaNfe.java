@@ -6,8 +6,6 @@ import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -16,8 +14,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Vector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class JFSchemaNfe extends JFrame implements ManualView {
@@ -37,7 +33,19 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     tmSchemaNfe.novaLista(lista);
     JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
     tcrAltura.adjustRowHeights();
+    ajustarAlturaLateral(lista);
+  }
 
+  /**
+   * <p>
+   * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma
+   * coluna com linhas populadas com o 'idGrupo' da lista passada por parâmetro(lista). Também aplica a altura da linha
+   * da jtSchemanfe na jtSchemaNfeLateral correspondente.
+   * </p>
+   *
+   * @param lista lista de objetos SchemaNfe.
+   */
+  private void ajustarAlturaLateral(List<SchemaNfe> lista) {
     final Object[][] data = manual.getMatrizIdGrupo(lista);
     final Object[] columnNames = manual.getVetorColunaIdGrupo();
     jtSchemaNfeLateral.setModel(new DefaultTableModel(data, columnNames));
