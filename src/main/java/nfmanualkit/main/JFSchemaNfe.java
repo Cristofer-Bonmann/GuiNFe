@@ -1,6 +1,7 @@
 package nfmanualkit.main;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.util.*;
 import nfmanualkit.view.ManualView;
 
@@ -104,6 +105,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     });
   }
 
+  private JComboBox<EFiltro> jcbFiltro;
   private JTextField jtfFiltro;
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
@@ -114,6 +116,9 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setLayout(new BorderLayout());
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    jcbFiltro = new JComboBox<>(EFiltro.values());
+    jcbFiltro.setPreferredSize(new Dimension(150, 25));
 
     jtfFiltro = new JTextField();
     jtfFiltro.setPreferredSize(new Dimension(300, 25));
@@ -133,6 +138,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     final JPanel jpTopII = new JPanel();
 
     jpTopII.setLayout(new FlowLayout());
+    jpTopII.add(jcbFiltro);
     jpTopII.add(jtfFiltro);
 
     jpTop.add(jpTopII, BorderLayout.CENTER);

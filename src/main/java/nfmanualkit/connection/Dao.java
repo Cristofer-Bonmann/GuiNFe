@@ -89,6 +89,7 @@ public class Dao implements DaoPresenter {
     return lista;
   }
 
+  // TODO: 09/02/2023 inserir doc
   protected String montarQuery(EFiltro eFiltro) {
     final String query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " LIKE ? ORDER BY id";
     return query;
