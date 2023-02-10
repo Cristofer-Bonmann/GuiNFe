@@ -10,4 +10,6 @@ public interface ManualView {
   void exibir(List<SchemaNfe> lista);
 
   void setSelectedEFiltro(EFiltro eFiltro);
+
+  EFiltro getSelectedEFiltro();
 }

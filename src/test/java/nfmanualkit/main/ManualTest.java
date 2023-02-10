@@ -80,14 +80,17 @@ public class ManualTest {
 
   @Test
   public void deveListarPorFiltro() throws SQLException {
+    final EFiltro eFiltro = EFiltro.IDGRUPO;
     final String filtro = "";
     final List<SchemaNfe> lista = Mockito.mock(List.class);
 
-    when(daoPresenter.listar(filtro)).thenReturn(lista);
+    when(view.getSelectedEFiltro()).thenReturn(eFiltro);
+    when(daoPresenter.listar(eFiltro, filtro)).thenReturn(lista);
     doNothing().when(view).exibir(lista);
     manual.listarPorFiltro(filtro);
 
-    verify(daoPresenter).listar(filtro);
+    verify(view).getSelectedEFiltro();
+    verify(daoPresenter).listar(eFiltro, filtro);
     verify(view).exibir(lista);
     verifyNoMoreInteractions(daoPresenter, view);
   }

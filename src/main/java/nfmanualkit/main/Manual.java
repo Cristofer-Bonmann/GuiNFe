@@ -54,7 +54,8 @@ public class Manual {
    * @throws SQLException
    */
   public void listarPorFiltro(String filtro) throws SQLException {
-    final List<SchemaNfe> lista = daoPresenter.listar(filtro);
+    final EFiltro eFiltro = view.getSelectedEFiltro();
+    final List<SchemaNfe> lista = daoPresenter.listar(eFiltro, filtro);
     view.exibir(lista);
   }
 

@@ -39,6 +39,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jcbFiltro.setSelectedItem(eFiltro);
   }
 
+  @Override
+  public EFiltro getSelectedEFiltro() {
+    return (EFiltro) jcbFiltro.getSelectedItem();
+  }
+
   /**
    * <p>
    * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma

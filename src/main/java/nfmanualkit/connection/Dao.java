@@ -97,14 +97,16 @@ public class Dao implements DaoPresenter {
 
   /**
    * Lista todos os resultados da tabela 'schema_nfe' filtrando por: idGrupo.
+   *
+   * @param eFiltro filtro da consulta.
    * @param filtro termo que filtrará os resultados.
    * @return lista de objeto {@link SchemaNfe};
    *
    * @throws SQLException
    */
   @Override
-  public List<SchemaNfe> listar(String filtro) throws SQLException {
-    final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? ORDER BY id";
+  public List<SchemaNfe> listar(EFiltro eFiltro, String filtro) throws SQLException {
+    final String query = montarQuery(eFiltro);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
     preparedStatement.setString(1, "%" + filtro + "%");
