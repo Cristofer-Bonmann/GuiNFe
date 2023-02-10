@@ -1,6 +1,7 @@
 package nfmanualkit.connection;
 
 import nfmanualkit.entity.SchemaNfe;
+import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.ConnectPresenter;
 import nfmanualkit.presenter.DaoPresenter;
 
@@ -86,6 +87,11 @@ public class Dao implements DaoPresenter {
     connection.close();
 
     return lista;
+  }
+
+  protected String montarQuery(EFiltro eFiltro) {
+    final String query = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? ORDER BY id";
+    return query;
   }
 
   /**
