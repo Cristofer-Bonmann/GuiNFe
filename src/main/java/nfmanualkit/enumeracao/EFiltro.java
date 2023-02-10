@@ -31,6 +31,8 @@ public enum EFiltro {
       }
     }
 
+    eFiltroRotulo = eFiltroRotulo == null ? EFiltro.NENHUM : eFiltroRotulo;
+
     return eFiltroRotulo;
   }
 

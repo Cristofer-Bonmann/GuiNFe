@@ -38,6 +38,17 @@ public class ManualTest {
   }
 
   @Test
+  public void deveSelecionarFiltroNENHUM() {
+    final String nomeColuna = "rotulo desconhecido";
+
+    doNothing().when(view).setSelectedEFiltro(EFiltro.NENHUM);
+    manual.selecionarFiltro(nomeColuna);
+
+    verify(view).setSelectedEFiltro(EFiltro.NENHUM);
+    verifyNoMoreInteractions(view);
+  }
+
+  @Test
   public void deveSelecionarFiltro() {
     final String nomeColuna = EFiltro.IDGRUPO.getRotulo();
 
