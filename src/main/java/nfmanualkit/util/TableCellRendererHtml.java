@@ -45,6 +45,9 @@ public class TableCellRendererHtml extends DefaultTableCellRenderer {
     if (schemaNfe != null && schemaNfe.getIdGrupo().equals("ID")) {
       label.setBackground(Color.LIGHT_GRAY);
 
+    } else if(schemaNfe != null && schemaNfe.getElemento().equals("G")) {
+      label.setBackground(new Color(253, 222, 118));
+
     } else {
       if (isSelected) {
         label.setBackground(new Color(168, 194, 255));
