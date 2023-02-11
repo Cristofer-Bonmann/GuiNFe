@@ -6,6 +6,8 @@ import nfmanualkit.util.*;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
@@ -107,6 +109,21 @@ public class JFSchemaNfe extends JFrame implements ManualView {
             // TODO: 07/02/2023 exibir notificação.
             ex.printStackTrace();
           }
+        }
+      }
+    });
+
+    jtfFiltro.getDocument().addDocumentListener(new DocumentListenerAdapter() {
+
+      @Override
+      public void removeUpdate(DocumentEvent e) {
+        try {
+          if (jtfFiltro.getText().equals("")) {
+            manual.listarTodos();
+          }
+        } catch (SQLException ex) {
+          ex.printStackTrace();
+          // TODO: 11/02/2023 exibir notificação
         }
       }
     });
