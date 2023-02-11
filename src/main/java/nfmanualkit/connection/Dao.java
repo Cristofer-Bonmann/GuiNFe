@@ -91,7 +91,17 @@ public class Dao implements DaoPresenter {
 
   // TODO: 09/02/2023 inserir doc
   protected String montarQuery(EFiltro eFiltro) {
-    final String query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " LIKE ? ORDER BY id";
+    String query;
+
+    switch (eFiltro) {
+      case IDGRUPO:
+        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? OR pai = ? ORDER BY id";
+        break;
+
+      default:
+      query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? ORDER BY id";
+    }
+
     return query;
   }
 
@@ -109,7 +119,9 @@ public class Dao implements DaoPresenter {
     final String query = montarQuery(eFiltro);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
-    preparedStatement.setString(1, "%" + filtro + "%");
+    preparedStatement.setString(1, filtro);
+    if (eFiltro.equals(EFiltro.IDGRUPO))
+      preparedStatement.setString(2, filtro);
 
     final ResultSet resultSet = preparedStatement.executeQuery();
 

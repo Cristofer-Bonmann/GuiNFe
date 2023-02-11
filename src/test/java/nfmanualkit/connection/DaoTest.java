@@ -25,7 +25,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroObservacao() {
     final String query = dao.montarQuery(EFiltro.OBSERVACAO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE observacao LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE observacao = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -33,7 +33,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroTamanho() {
     final String query = dao.montarQuery(EFiltro.TAMANHO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE tamanho LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE tamanho = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -41,7 +41,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroOcorrencia() {
     final String query = dao.montarQuery(EFiltro.OCORRENCIA);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE ocorrencia LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE ocorrencia = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -49,7 +49,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroTipo() {
     final String query = dao.montarQuery(EFiltro.TIPO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE tipo LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE tipo = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -57,7 +57,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroPai() {
     final String query = dao.montarQuery(EFiltro.PAI);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE pai LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE pai = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -65,7 +65,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroElemento() {
     final String query = dao.montarQuery(EFiltro.ELEMENTO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE elemento LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE elemento = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -73,7 +73,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroDescricao() {
     final String query = dao.montarQuery(EFiltro.DESCRICAO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE descricao LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE descricao = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -81,7 +81,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroCampo() {
     final String query = dao.montarQuery(EFiltro.CAMPO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE campo LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE campo = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
@@ -89,7 +89,7 @@ public class DaoTest {
   public void deveMontarQueryFiltroIdGrupo() {
     final String query = dao.montarQuery(EFiltro.IDGRUPO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE idGrupo = ? OR pai = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 }
