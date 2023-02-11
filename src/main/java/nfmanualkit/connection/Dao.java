@@ -98,6 +98,11 @@ public class Dao implements DaoPresenter {
         query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? OR pai = ? ORDER BY id";
         break;
 
+      case CAMPO:
+        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? OR pai = " +
+        "(SELECT idGrupo FROM schema_nfe WHERE campo = ? ORDER BY id LIMIT 1) ORDER BY id";
+        break;
+
       default:
       query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? ORDER BY id";
     }
@@ -120,7 +125,7 @@ public class Dao implements DaoPresenter {
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
     preparedStatement.setString(1, filtro);
-    if (eFiltro.equals(EFiltro.IDGRUPO))
+    if (eFiltro.equals(EFiltro.IDGRUPO) || eFiltro.equals(EFiltro.CAMPO))
       preparedStatement.setString(2, filtro);
 
     final ResultSet resultSet = preparedStatement.executeQuery();

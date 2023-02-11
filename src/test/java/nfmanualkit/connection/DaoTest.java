@@ -81,7 +81,9 @@ public class DaoTest {
   public void deveMontarQueryFiltroCampo() {
     final String query = dao.montarQuery(EFiltro.CAMPO);
 
-    final String esperado = "SELECT * FROM schema_nfe WHERE campo = ? ORDER BY id";
+    final String esperado = "SELECT * FROM schema_nfe WHERE campo = ? OR pai = " +
+            "(SELECT idGrupo FROM schema_nfe WHERE campo = ? ORDER BY id LIMIT 1)" +
+            " ORDER BY id";
     assertThat(query, is(esperado));
   }
 
