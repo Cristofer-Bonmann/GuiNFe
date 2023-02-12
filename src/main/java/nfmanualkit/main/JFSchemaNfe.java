@@ -156,7 +156,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jcbFiltro.setPreferredSize(new Dimension(150, 25));
 
     jtfFiltro = new JTextField();
-    jtfFiltro.setPreferredSize(new Dimension(300, 25));
+    jtfFiltro.setPreferredSize(new Dimension(400, 25));
 
     jtSchemaNfe = new JTable();
     jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -172,7 +172,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     final JPanel jpTop = new JPanel(new BorderLayout());
     final JPanel jpTopII = new JPanel();
 
-    jpTopII.setLayout(new FlowLayout());
+    jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
     jpTopII.add(jcbFiltro);
     jpTopII.add(jtfFiltro);
 
