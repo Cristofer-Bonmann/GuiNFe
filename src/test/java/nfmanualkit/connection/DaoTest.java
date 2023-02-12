@@ -94,4 +94,23 @@ public class DaoTest {
     final String esperado = "SELECT * FROM schema_nfe WHERE idGrupo = ? OR pai = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
+
+  @Test
+  public void deveMontarQueryComTodosFiltros() {
+    final String query = dao.montarQuery(EFiltro.TODOS);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE " +
+            "idGrupo = ? OR \n" +
+            "campo = ? OR \n" +
+            "descricao = ? OR \n" +
+            "elemento = ? OR \n" +
+            "pai = ? OR \n" +
+            "tipo = ? OR \n" +
+            "ocorrencia = ? OR \n" +
+            "tamanho = ? OR \n" +
+            "observacao = ? " +
+            "ORDER BY id";
+
+    assertThat(query, is(esperado));
+  }
 }

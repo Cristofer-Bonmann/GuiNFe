@@ -1,7 +1,7 @@
 package nfmanualkit.enumeracao;
 
 public enum EFiltro {
-  NENHUM("", ""),
+  TODOS("", "Todos"),
   IDGRUPO("idGrupo", "ID Grupo"),
   CAMPO("campo", "Campo"),
   DESCRICAO("descricao", "Descrição"),
@@ -31,7 +31,7 @@ public enum EFiltro {
       }
     }
 
-    eFiltroRotulo = eFiltroRotulo == null ? EFiltro.NENHUM : eFiltroRotulo;
+    eFiltroRotulo = eFiltroRotulo == null ? EFiltro.TODOS : eFiltroRotulo;
 
     return eFiltroRotulo;
   }

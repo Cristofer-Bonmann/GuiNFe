@@ -9,5 +9,5 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Column {
 
-  EFiltro nomeColuna() default EFiltro.NENHUM;
+  EFiltro nomeColuna() default EFiltro.TODOS;
 }

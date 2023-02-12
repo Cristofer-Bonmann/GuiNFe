@@ -94,6 +94,20 @@ public class Dao implements DaoPresenter {
     String query;
 
     switch (eFiltro) {
+      case TODOS:
+        query = "SELECT * FROM schema_nfe WHERE " +
+                "idGrupo = ? OR \n" +
+                "campo = ? OR \n" +
+                "descricao = ? OR \n" +
+                "elemento = ? OR \n" +
+                "pai = ? OR \n" +
+                "tipo = ? OR \n" +
+                "ocorrencia = ? OR \n" +
+                "tamanho = ? OR \n" +
+                "observacao = ? " +
+                "ORDER BY id";
+        break;
+
       case IDGRUPO:
         query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? OR pai = ? ORDER BY id";
         break;
@@ -124,9 +138,30 @@ public class Dao implements DaoPresenter {
     final String query = montarQuery(eFiltro);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
-    preparedStatement.setString(1, filtro);
-    if (eFiltro.equals(EFiltro.IDGRUPO) || eFiltro.equals(EFiltro.CAMPO))
-      preparedStatement.setString(2, filtro);
+
+    switch (eFiltro) {
+      case TODOS:
+        preparedStatement.setString(1, filtro);
+        preparedStatement.setString(2, filtro);
+        preparedStatement.setString(3, filtro);
+        preparedStatement.setString(4, filtro);
+        preparedStatement.setString(5, filtro);
+        preparedStatement.setString(6, filtro);
+        preparedStatement.setString(7, filtro);
+        preparedStatement.setString(8, filtro);
+        preparedStatement.setString(9, filtro);
+        break;
+
+      case IDGRUPO:
+      case CAMPO:
+        preparedStatement.setString(1, filtro);
+        preparedStatement.setString(2, filtro);
+        break;
+
+      default:
+        preparedStatement.setString(1, filtro);
+        break;
+    }
 
     final ResultSet resultSet = preparedStatement.executeQuery();
 

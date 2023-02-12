@@ -4,13 +4,10 @@ import nfmanualkit.entity.SchemaNfe;
 import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.view.ManualView;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 
-import javax.xml.validation.Schema;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +38,10 @@ public class ManualTest {
   public void deveSelecionarFiltroNENHUM() {
     final String nomeColuna = "rotulo desconhecido";
 
-    doNothing().when(view).setSelectedEFiltro(EFiltro.NENHUM);
+    doNothing().when(view).setSelectedEFiltro(EFiltro.TODOS);
     manual.selecionarFiltro(nomeColuna);
 
-    verify(view).setSelectedEFiltro(EFiltro.NENHUM);
+    verify(view).setSelectedEFiltro(EFiltro.TODOS);
     verifyNoMoreInteractions(view);
   }
 
