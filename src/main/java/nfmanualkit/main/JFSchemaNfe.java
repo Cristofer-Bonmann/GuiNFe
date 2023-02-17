@@ -142,6 +142,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
   private JComboBox<EFiltro> jcbFiltro;
   private JTextField jtfFiltro;
+  private JToggleButton jtbMatchCase;
+  private JToggleButton jtbPalavra;
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
   private JTable jtSchemaNfeLateral;
@@ -157,6 +159,12 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     jtfFiltro = new JTextField();
     jtfFiltro.setPreferredSize(new Dimension(400, 25));
+
+    jtbMatchCase = new JToggleButton("M");
+    jtbMatchCase.setPreferredSize(new Dimension(50, 25));
+
+    jtbPalavra = new JToggleButton("P");
+    jtbPalavra.setPreferredSize(new Dimension(50, 25));
 
     jtSchemaNfe = new JTable();
     jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -175,6 +183,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
     jpTopII.add(jcbFiltro);
     jpTopII.add(jtfFiltro);
+    jpTopII.add(jtbMatchCase);
+    jpTopII.add(jtbPalavra);
 
     jpTop.add(jpTopII, BorderLayout.CENTER);
 
