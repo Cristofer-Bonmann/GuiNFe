@@ -14,4 +14,6 @@ public interface ManualView {
     EFiltro getSelectedEFiltro();
 
     boolean isMatchCase();
+
+    boolean isOcorrenciaPalavra();
 }

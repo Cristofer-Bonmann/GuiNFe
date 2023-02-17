@@ -81,16 +81,19 @@ public class ManualTest {
     final String filtro = "";
     final List<SchemaNfe> lista = Mockito.mock(List.class);
     final boolean matchCase = false;
+    final boolean ocorrenciaPalavra = false;
 
     when(view.getSelectedEFiltro()).thenReturn(eFiltro);
     when(view.isMatchCase()).thenReturn(matchCase);
-    when(daoPresenter.listar(eFiltro, filtro, matchCase)).thenReturn(lista);
+    when(view.isOcorrenciaPalavra()).thenReturn(ocorrenciaPalavra);
+    when(daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra)).thenReturn(lista);
     doNothing().when(view).exibir(lista);
     manual.listarPorFiltro(filtro);
 
     verify(view).getSelectedEFiltro();
     verify(view).isMatchCase();
-    verify(daoPresenter).listar(eFiltro, filtro, matchCase);
+    verify(view).isOcorrenciaPalavra();
+    verify(daoPresenter).listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
     verify(view).exibir(lista);
     verifyNoMoreInteractions(daoPresenter, view);
   }

@@ -7,7 +7,6 @@ import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
@@ -49,6 +48,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   @Override
   public boolean isMatchCase() {
     return jtbMatchCase.isSelected();
+  }
+
+  @Override
+  public boolean isOcorrenciaPalavra() {
+    return jtbOcorrenciaPalavra.isSelected();
   }
 
   /**
@@ -159,7 +163,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
   private JComboBox<EFiltro> jcbFiltro;
   private JTextField jtfFiltro;
   private JToggleButton jtbMatchCase;
-  private JToggleButton jtbPalavra;
+  private JToggleButton jtbOcorrenciaPalavra;
   private JScrollPane jspSchemaNfe;
   private JTable jtSchemaNfe;
   private JTable jtSchemaNfeLateral;
@@ -179,8 +183,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jtbMatchCase = new JToggleButton("Mc");
     jtbMatchCase.setPreferredSize(new Dimension(50, 25));
 
-    jtbPalavra = new JToggleButton("P");
-    jtbPalavra.setPreferredSize(new Dimension(50, 25));
+    jtbOcorrenciaPalavra = new JToggleButton("P");
+    jtbOcorrenciaPalavra.setPreferredSize(new Dimension(50, 25));
 
     jtSchemaNfe = new JTable();
     jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -200,7 +204,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jpTopII.add(jcbFiltro);
     jpTopII.add(jtfFiltro);
     jpTopII.add(jtbMatchCase);
-    jpTopII.add(jtbPalavra);
+    jpTopII.add(jtbOcorrenciaPalavra);
 
     jpTop.add(jpTopII, BorderLayout.CENTER);
 

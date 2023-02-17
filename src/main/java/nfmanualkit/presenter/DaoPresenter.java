@@ -10,5 +10,5 @@ public interface DaoPresenter {
 
   List<SchemaNfe> listar() throws SQLException;
 
-  List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase) throws SQLException;
+  List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws SQLException;
 }

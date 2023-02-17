@@ -57,7 +57,8 @@ public class Manual {
   public void listarPorFiltro(String filtro) throws SQLException {
     final EFiltro eFiltro = view.getSelectedEFiltro();
     final boolean matchCase = view.isMatchCase();
-    final List<SchemaNfe> lista = daoPresenter.listar(eFiltro, filtro, matchCase);
+    final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
+    final List<SchemaNfe> lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
     view.exibir(lista);
   }
 
