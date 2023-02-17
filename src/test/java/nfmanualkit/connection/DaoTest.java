@@ -23,7 +23,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroObservacao() {
-    final String query = dao.montarQuery(EFiltro.OBSERVACAO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.OBSERVACAO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE observacao = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -31,7 +33,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroTamanho() {
-    final String query = dao.montarQuery(EFiltro.TAMANHO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.TAMANHO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE tamanho = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -39,7 +43,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroOcorrencia() {
-    final String query = dao.montarQuery(EFiltro.OCORRENCIA);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.OCORRENCIA, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE ocorrencia = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -47,7 +53,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroTipo() {
-    final String query = dao.montarQuery(EFiltro.TIPO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.TIPO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE tipo = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -55,7 +63,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroPai() {
-    final String query = dao.montarQuery(EFiltro.PAI);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.PAI, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE pai = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -63,7 +73,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroElemento() {
-    final String query = dao.montarQuery(EFiltro.ELEMENTO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.ELEMENTO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE elemento = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -71,7 +83,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroDescricao() {
-    final String query = dao.montarQuery(EFiltro.DESCRICAO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.DESCRICAO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE descricao = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -79,7 +93,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroCampo() {
-    final String query = dao.montarQuery(EFiltro.CAMPO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.CAMPO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE campo = ? OR pai = " +
             "(SELECT idGrupo FROM schema_nfe WHERE campo = ? ORDER BY id LIMIT 1)" +
@@ -89,7 +105,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroIdGrupo() {
-    final String query = dao.montarQuery(EFiltro.IDGRUPO);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE idGrupo = ? OR pai = ? ORDER BY id";
     assertThat(query, is(esperado));
@@ -97,7 +115,9 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComTodosFiltros() {
-    final String query = dao.montarQuery(EFiltro.TODOS);
+    final boolean matchCase = false;
+
+    final String query = dao.montarQuery(EFiltro.TODOS, matchCase);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE " +
             "idGrupo = ? OR \n" +

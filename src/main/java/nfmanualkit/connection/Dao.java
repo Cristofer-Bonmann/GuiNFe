@@ -90,7 +90,7 @@ public class Dao implements DaoPresenter {
   }
 
   // TODO: 09/02/2023 inserir doc
-  protected String montarQuery(EFiltro eFiltro) {
+  protected String montarQuery(EFiltro eFiltro, boolean matchCase) {
     String query;
 
     switch (eFiltro) {
@@ -133,9 +133,10 @@ public class Dao implements DaoPresenter {
    *
    * @throws SQLException
    */
+  // TODO: 16/02/2023 atualização para adicionar o parâmetro 'matchCase'.
   @Override
-  public List<SchemaNfe> listar(EFiltro eFiltro, String filtro) throws SQLException {
-    final String query = montarQuery(eFiltro);
+  public List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase) throws SQLException {
+    final String query = montarQuery(eFiltro, matchCase);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
 

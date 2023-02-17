@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface ManualView {
 
-  void exibir(List<SchemaNfe> lista);
+    void exibir(List<SchemaNfe> lista);
 
-  void setSelectedEFiltro(EFiltro eFiltro);
+    void setSelectedEFiltro(EFiltro eFiltro);
 
-  EFiltro getSelectedEFiltro();
+    EFiltro getSelectedEFiltro();
+
+    boolean isMatchCase();
 }

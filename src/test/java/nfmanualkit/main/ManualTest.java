@@ -80,14 +80,17 @@ public class ManualTest {
     final EFiltro eFiltro = EFiltro.IDGRUPO;
     final String filtro = "";
     final List<SchemaNfe> lista = Mockito.mock(List.class);
+    final boolean matchCase = false;
 
     when(view.getSelectedEFiltro()).thenReturn(eFiltro);
-    when(daoPresenter.listar(eFiltro, filtro)).thenReturn(lista);
+    when(view.isMatchCase()).thenReturn(matchCase);
+    when(daoPresenter.listar(eFiltro, filtro, matchCase)).thenReturn(lista);
     doNothing().when(view).exibir(lista);
     manual.listarPorFiltro(filtro);
 
     verify(view).getSelectedEFiltro();
-    verify(daoPresenter).listar(eFiltro, filtro);
+    verify(view).isMatchCase();
+    verify(daoPresenter).listar(eFiltro, filtro, matchCase);
     verify(view).exibir(lista);
     verifyNoMoreInteractions(daoPresenter, view);
   }

@@ -46,6 +46,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     return (EFiltro) jcbFiltro.getSelectedItem();
   }
 
+  @Override
+  public boolean isMatchCase() {
+    return jtbMatchCase.isSelected();
+  }
+
   /**
    * <p>
    * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma
@@ -171,7 +176,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jtfFiltro = new JTextField();
     jtfFiltro.setPreferredSize(new Dimension(400, 25));
 
-    jtbMatchCase = new JToggleButton("M");
+    jtbMatchCase = new JToggleButton("Mc");
     jtbMatchCase.setPreferredSize(new Dimension(50, 25));
 
     jtbPalavra = new JToggleButton("P");
