@@ -200,4 +200,24 @@ public class DaoTest {
 
     assertThat(query, is(esperado));
   }
+
+  @Test
+  public void deveMontarFiltroSemOcorrenciaDePalavra() {
+    final String filtro = "filtro";
+    final boolean ocorrenciaPalavra = false;
+
+    final String filtroOcorrencia = dao.montarFiltroComOcorrenciaPalavra(filtro, ocorrenciaPalavra);
+
+    assertThat(filtroOcorrencia, is("filtro"));
+  }
+
+  @Test
+  public void deveMontarFiltroDeOcorrenciaDePalavra() {
+    final String filtro = "filtro";
+    final boolean ocorrenciaPalavra = true;
+
+    final String filtroOcorrencia = dao.montarFiltroComOcorrenciaPalavra(filtro, ocorrenciaPalavra);
+
+    assertThat(filtroOcorrencia, is("%filtro%"));
+  }
 }

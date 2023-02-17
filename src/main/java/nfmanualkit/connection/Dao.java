@@ -126,6 +126,11 @@ public class Dao implements DaoPresenter {
     return query;
   }
 
+  // TODO: 17/02/2023 inserir doc
+  protected String montarFiltroComOcorrenciaPalavra(String filtro, boolean ocorrenciaPalavra) {
+    return ocorrenciaPalavra ? "%" + filtro + "%" : filtro;
+  }
+
   /**
    * Lista todos os resultados da tabela 'schema_nfe' filtrando por: idGrupo.
    *
@@ -139,7 +144,7 @@ public class Dao implements DaoPresenter {
   @Override
   public List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws SQLException {
     final String query = montarQuery(eFiltro, matchCase, ocorrenciaPalavra);
-    filtro = ocorrenciaPalavra ? "%" + filtro + "%" : filtro;
+    filtro = montarFiltroComOcorrenciaPalavra(filtro, ocorrenciaPalavra);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
 
