@@ -111,7 +111,7 @@ public class Dao implements DaoPresenter {
         break;
 
       case IDGRUPO:
-        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + " = ? OR pai = ? ORDER BY id";
+        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + operador + "? OR pai" + operador + "? ORDER BY id";
         break;
 
       case CAMPO:
