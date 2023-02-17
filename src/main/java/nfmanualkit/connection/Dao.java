@@ -93,18 +93,20 @@ public class Dao implements DaoPresenter {
   protected String montarQuery(EFiltro eFiltro, boolean matchCase, boolean ocorrenciaPalavra) {
     String query;
 
+    final String operador = ocorrenciaPalavra ? " LIKE " : " = ";
+
     switch (eFiltro) {
       case TODOS:
         query = "SELECT * FROM schema_nfe WHERE " +
-                "idGrupo = ? OR \n" +
-                "campo = ? OR \n" +
-                "descricao = ? OR \n" +
-                "elemento = ? OR \n" +
-                "pai = ? OR \n" +
-                "tipo = ? OR \n" +
-                "ocorrencia = ? OR \n" +
-                "tamanho = ? OR \n" +
-                "observacao = ? " +
+                "idGrupo" +  operador + "? OR \n" +
+                "campo" +  operador + "? OR \n" +
+                "descricao" +  operador + "? OR \n" +
+                "elemento" +  operador + "? OR \n" +
+                "pai" +  operador + "? OR \n" +
+                "tipo" +  operador + "? OR \n" +
+                "ocorrencia" +  operador + "? OR \n" +
+                "tamanho" +  operador + "? OR \n" +
+                "observacao" +  operador + "? " +
                 "ORDER BY id";
         break;
 

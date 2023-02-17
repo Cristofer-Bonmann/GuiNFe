@@ -123,6 +123,28 @@ public class DaoTest {
   }
 
   @Test
+  public void deveMontarQueryComOcorrenciaDePalavrasComTodosFiltros() {
+    final boolean matchCase = false;
+    final boolean ocorrenciaPalavra = true;
+
+    final String query = dao.montarQuery(EFiltro.TODOS, matchCase, ocorrenciaPalavra);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE " +
+            "idGrupo LIKE ? OR \n" +
+            "campo LIKE ? OR \n" +
+            "descricao LIKE ? OR \n" +
+            "elemento LIKE ? OR \n" +
+            "pai LIKE ? OR \n" +
+            "tipo LIKE ? OR \n" +
+            "ocorrencia LIKE ? OR \n" +
+            "tamanho LIKE ? OR \n" +
+            "observacao LIKE ? " +
+            "ORDER BY id";
+
+    assertThat(query, is(esperado));
+  }
+
+  @Test
   public void deveMontarQueryComTodosFiltros() {
     final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
