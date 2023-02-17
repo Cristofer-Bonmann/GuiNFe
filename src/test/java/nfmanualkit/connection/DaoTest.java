@@ -99,6 +99,19 @@ public class DaoTest {
   }
 
   @Test
+  public void deveMontarQueryComOcorrenciaDePalavraFiltroCampo() {
+    final boolean matchCase = false;
+    final boolean ocorrenciaPalavra = true;
+
+    final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE campo LIKE ? OR pai LIKE " +
+            "(SELECT idGrupo FROM schema_nfe WHERE campo LIKE ? ORDER BY id LIMIT 1)" +
+            " ORDER BY id";
+    assertThat(query, is(esperado));
+  }
+
+  @Test
   public void deveMontarQueryFiltroCampo() {
     final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
