@@ -158,6 +158,17 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         }
       }
     });
+
+    jtbOcorrenciaPalavra.addActionListener(actionEvent -> {
+      if (jtbOcorrenciaPalavra.isSelected() && jtfFiltro.getText().trim().equals("")) {
+        try {
+          manual.listarPorFiltro(jtfFiltro.getText());
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+          // TODO: 16/02/2023 exibir notificação.
+        }
+      }
+    });
   }
 
   private JComboBox<EFiltro> jcbFiltro;
