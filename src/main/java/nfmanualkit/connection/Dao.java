@@ -139,6 +139,7 @@ public class Dao implements DaoPresenter {
   @Override
   public List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws SQLException {
     final String query = montarQuery(eFiltro, matchCase, ocorrenciaPalavra);
+    filtro = ocorrenciaPalavra ? "%" + filtro + "%" : filtro;
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
 

@@ -192,10 +192,10 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     jtfFiltro.setPreferredSize(new Dimension(400, 25));
 
     jtbMatchCase = new JToggleButton("Mc");
-    jtbMatchCase.setPreferredSize(new Dimension(50, 25));
+    jtbMatchCase.setPreferredSize(new Dimension(60, 25));
 
     jtbOcorrenciaPalavra = new JToggleButton("P");
-    jtbOcorrenciaPalavra.setPreferredSize(new Dimension(50, 25));
+    jtbOcorrenciaPalavra.setPreferredSize(new Dimension(60, 25));
 
     jtSchemaNfe = new JTable();
     jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
