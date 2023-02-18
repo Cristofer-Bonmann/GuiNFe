@@ -89,7 +89,16 @@ public class Dao implements DaoPresenter {
     return lista;
   }
 
-  // TODO: 09/02/2023 inserir doc
+  /**
+   * Monta query para consulta no banco de dados.
+   *
+   * @param eFiltro filtro que será usando para a consulta.(veja {@link EFiltro}).
+   * @param matchCase true = query irá considerará letras maiúsculas.
+   * @param ocorrenciaPalavra true = query utilizará o operador 'like' na comparação do filtro. Se false, utilizará o
+   *                          operador '='.
+   *
+   * @return String que representa a query gerada.
+   */
   protected String montarQuery(EFiltro eFiltro, boolean matchCase, boolean ocorrenciaPalavra) {
     String query;
 
@@ -129,26 +138,42 @@ public class Dao implements DaoPresenter {
     return query;
   }
 
-  // TODO: 17/02/2023 inserir doc
+  /**
+   * Define a modalidade do operador de comparação que será usado no filtro(parâmetro).
+   * @param filtro filtro que será formatado.
+   * @param ocorrenciaPalavra defini a modalidade comparação.
+   *
+   * @return true = "'%termo do filtro%'", false = 'termo do filtro'.
+   */
   protected String montarFiltroComOcorrenciaPalavra(String filtro, boolean ocorrenciaPalavra) {
     return ocorrenciaPalavra ? "%" + filtro + "%" : filtro;
   }
 
-  // TODO: 17/02/2023 inserir doc
+  /**
+   * Define se o filtro(parâmetro) será formatado para maiúsculo ou minúsculo.
+   * @param filtro filtro que será formatado.
+   * @param matchCase define se o termo do filtro será formatado para maiúsculo ou minúsculo.
+   *
+   * @return true = maiúsculo, false = minúsculo.
+   */
   protected String montarFiltroMatchCase(String filtro, boolean matchCase) {
     return matchCase ? filtro : filtro.toLowerCase();
   }
 
   /**
-   * Lista todos os resultados da tabela 'schema_nfe' filtrando por: idGrupo.
+   * Lista todos os registros {@link SchemaNfe} do banco de dados filtrando por: tipo do filtro(eFiltro),
+   * termo do filtro(filtro), diferenciação de letras(matchCase: maiúscula ou minúscula) e se a busca será feita com
+   * comparação '=' ou 'like'.
    *
    * @param eFiltro filtro da consulta.
    * @param filtro termo que filtrará os resultados.
+   * @param matchCase true = maiúscula, false = minúscula.
+   * @param ocorrenciaPalavra true = 'like', false = '='.
+   *
    * @return lista de objeto {@link SchemaNfe};
    *
    * @throws SQLException
    */
-  // TODO: 16/02/2023 atualização para adicionar o parâmetro 'matchCase' e 'ocorrenciaPalavra'.
   @Override
   public List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws SQLException {
     final String query = montarQuery(eFiltro, matchCase, ocorrenciaPalavra);

@@ -20,7 +20,12 @@ public enum EFiltro {
     this.rotulo = rotulo;
   }
 
-  // TODO: 10/02/2023 inserir doc
+  /**
+   * @param rotulo String que representa a propriedade 'rotulo' do {@link EFiltro}.
+   *
+   * @return retorna um {@link EFiltro} correspondete ao 'rotulo'(parâmetro). <br>
+   * Se não for encontrado nenhum {@link EFiltro} correspondente será retornado EFiltro.TODOS.
+   */
   public static EFiltro getPorRotulo(String rotulo) {
     EFiltro eFiltroRotulo = null;
 
@@ -40,7 +45,12 @@ public enum EFiltro {
     return this.filtro;
   }
 
-  // TODO: 17/02/2023 inserir doc
+  /**
+   * Recebe uma variável booleana(matchCade) que define se a propriedade 'filtro' do {@link EFiltro} será formata
+   * 'lower(valor_filtro)', quando false, ou apenas 'valorFiltro' quando true.
+   * @param matchCase
+   * @return propriedade 'filtro' formatada.
+   */
   public String getFiltro(boolean matchCase) {
     String f = !matchCase ? "lower(" + this.filtro + ")" : filtro;
     return f;

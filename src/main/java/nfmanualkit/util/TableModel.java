@@ -3,6 +3,7 @@ package nfmanualkit.util;
 import nfmanualkit.annotation.Column;
 import nfmanualkit.enumeracao.EFiltro;
 
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -10,7 +11,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// TODO: 08/02/2023 inserir doc
+/**
+ * <p>
+ * Classe que extende de {@link AbstractTableModel} e é responsavel para ser o model de um componente JTable.
+ * </p>
+ * <br>
+ * <p>
+ * Como usar: supondo que exista uma classe chamada 'Usuario' com o seu campo 'nome' marcado com o Annotation {@link Column}.
+ * </p>
+ *
+ * <pre>
+ *     final {@link TableModel}<Usuario> tableModel = new TableModel(Usuario.class);
+ *     final {@link JTable} jTable = new JTable();
+ *     jTable.setModel(tableModel);
+ * </pre>
+ * @param <T>
+ */
 public class TableModel<T> extends AbstractTableModel {
 
   private Class<?> aClass;

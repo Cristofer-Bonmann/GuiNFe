@@ -5,7 +5,17 @@ import nfmanualkit.enumeracao.EFiltro;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-// TODO: 10/02/2023 inserir doc
+/**
+ * <p>
+ * Interface Annotation para definir uma coluna para ser exibida em um componente JTable. Ex.:
+ * </p>
+ *
+ * <pre>
+ * @Column(nomeColuna = "Nome")
+ *     private String nome;
+ * </pre>
+ *
+ */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Column {
 

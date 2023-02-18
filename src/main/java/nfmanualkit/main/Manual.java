@@ -36,24 +36,29 @@ public class Manual {
 
 
   /**
-   * Exibe a lista de {@link SchemaNfe} na View.
+   * Exibe a lista com todos os registros de {@link SchemaNfe} do banco de dados na View.<br>
+   * A operação só será efetuada se o conteúdo de 'filtro' for igual de uma String vazia("").
+   *
    * @return lista de objetos {@link SchemaNfe}.
    *
    * @throws SQLException
    */
-  public List<SchemaNfe> listarTodos() throws SQLException {
-    final List<SchemaNfe> lista = daoPresenter.listar();
-    view.exibir(lista);
-    return lista;
+  public void listarTodos() throws SQLException {
+    final String filtro = view.getFiltro();
+    if (filtro.trim().equals("")) {
+      final List<SchemaNfe> lista = daoPresenter.listar();
+      view.exibir(lista);
+    }
   }
 
   /**
-   * Exibe a lista de {@link SchemaNfe} filtrada pelo termo(parâmetro filtro) na View.
+   * Exibe a lista de {@link SchemaNfe} filtrada pelo termo(parâmetro filtro) na View.<br>
+   * A operação só será efetuada se o conteúdo de 'filtro' deferir de uma String vazia("").
+   *
    * @param filtro termo que filtrará o resultado.
    *
    * @throws SQLException
    */
-  // TODO: 16/02/2023 atualização para adicionar parâmetro 'matchCase'.
   public void listarPorFiltro(String filtro) throws SQLException {
     final List<SchemaNfe> lista;
 
@@ -62,6 +67,7 @@ public class Manual {
       final boolean matchCase = view.isMatchCase();
       final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
       lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
+
     } else {
       lista = daoPresenter.listar();
     }
@@ -69,7 +75,13 @@ public class Manual {
     view.exibir(lista);
   }
 
-  // TODO: 09/02/2023 inserir doc
+  /**
+   * Gera uma matriz de apenas uma coluna e com a quantidade de linhas igual ao tamanho da lista(parâmetro). <br>
+   * O conteúdo das linhas será o respectivo valor de 'idGrupo' lista passada por parâmetro.
+   *
+   * @param lista lista de registros {@link SchemaNfe};
+   * @return matriz tamanho da lista x 1.
+   */
   public Object[][] getMatrizIdGrupo(List<SchemaNfe> lista) {
     final Object[][] data = new Object[lista.size()][1];
 
@@ -83,14 +95,22 @@ public class Manual {
     return data;
   }
 
-  // TODO: 09/02/2023 inserir doc
+  /**
+   * @return retorna vetor com tamanho 1 com o valor de uma String vazia("").
+   */
   public Object[] getVetorColunaIdGrupo() {
     final Object[] columnNames = new Object[1];
     columnNames[0] = "";
     return columnNames;
   }
 
-  // TODO: 10/02/2023 inserir doc
+  /**
+   * Recebe o título do 'header' da JTable, retorna o enumeration {@link EFiltro} correspondente ao 'nomeColuna' e
+   * seleciona na View, o item correspondente a teste enumeration.
+   *
+   * @param nomeColuna o nome da coluna(header do JTable). Podendo ser qualquer qualquer propriedade 'rotulo' do
+   *                   enumeration {@link EFiltro}.
+   */
   public void selecionarFiltro(String nomeColuna) {
     final EFiltro eFiltro = EFiltro.getPorRotulo(nomeColuna);
     view.setSelectedEFiltro(eFiltro);

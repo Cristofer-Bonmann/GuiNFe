@@ -114,12 +114,15 @@ public class ManualTest {
 
   @Test
   public void deveListarTodos() throws SQLException {
+    final String filtro = "";
     final List<SchemaNfe> lista = mock(List.class);
 
+    when(view.getFiltro()).thenReturn(filtro);
     when(daoPresenter.listar()).thenReturn(lista);
     doNothing().when(view).exibir(lista);
     manual.listarTodos();
 
+    verify(view).getFiltro();
     verify(daoPresenter).listar();
     verify(view).exibir(lista);
     verifyNoMoreInteractions(daoPresenter, view);

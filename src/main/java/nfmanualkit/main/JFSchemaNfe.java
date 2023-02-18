@@ -17,209 +17,212 @@ import java.util.stream.IntStream;
 
 public class JFSchemaNfe extends JFrame implements ManualView {
 
-  private Manual manual;
-  private TableModel<SchemaNfe> tmSchemaNfe;
-  private TableCellRendererAltura tcrAltura;
+    private Manual manual;
+    private TableModel<SchemaNfe> tmSchemaNfe;
+    private TableCellRendererAltura tcrAltura;
 
-  public JFSchemaNfe() {
-    initComponents();
-    inits();
-    initEvents();
-  }
-
-  @Override
-  public void exibir(List<SchemaNfe> lista) {
-    tmSchemaNfe.novaLista(lista);
-    JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
-    tcrAltura.adjustRowHeights();
-    ajustarAlturaLateral(lista);
-  }
-
-  @Override
-  public void setSelectedEFiltro(EFiltro eFiltro) {
-    jcbFiltro.setSelectedItem(eFiltro);
-  }
-
-  @Override
-  public EFiltro getSelectedEFiltro() {
-    return (EFiltro) jcbFiltro.getSelectedItem();
-  }
-
-  @Override
-  public boolean isMatchCase() {
-    return jtbMatchCase.isSelected();
-  }
-
-  @Override
-  public boolean isOcorrenciaPalavra() {
-    return jtbOcorrenciaPalavra.isSelected();
-  }
-
-  /**
-   * <p>
-   * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma
-   * coluna com linhas populadas com o 'idGrupo' da lista passada por parâmetro(lista). Também aplica a altura da linha
-   * da jtSchemanfe na jtSchemaNfeLateral correspondente.
-   * </p>
-   *
-   * @param lista lista de objetos SchemaNfe.
-   */
-  private void ajustarAlturaLateral(List<SchemaNfe> lista) {
-    final Object[][] data = manual.getMatrizIdGrupo(lista);
-    final Object[] columnNames = manual.getVetorColunaIdGrupo();
-    jtSchemaNfeLateral.setModel(new DefaultTableModel(data, columnNames));
-
-    IntStream.range(0, lista.size()).forEachOrdered(index -> {
-      final int rowHeight = jtSchemaNfe.getRowHeight(index);
-      jtSchemaNfeLateral.setRowHeight(index, rowHeight);
-    });
-  }
-
-  private void inits() {
-    manual = new Manual();
-    manual.setView(this);
-
-    tmSchemaNfe = new TableModel(SchemaNfe.class);
-    jtSchemaNfe.setModel(tmSchemaNfe);
-    tcrAltura = new TableCellRendererAltura(jtSchemaNfe);
-
-    final TableCellRendererHtml tcrHtml = new TableCellRendererHtml();
-    final TableColumnModel columnModel = jtSchemaNfe.getColumnModel();
-    for (int i = 0; i < columnModel.getColumnCount(); i++) {
-      columnModel.getColumn(i).setCellRenderer(tcrHtml);
+    public JFSchemaNfe() {
+        initComponents();
+        inits();
+        initEvents();
     }
-  }
 
-  private void initEvents() {
+    @Override
+    public void exibir(List<SchemaNfe> lista) {
+        tmSchemaNfe.novaLista(lista);
+        JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
+        tcrAltura.adjustRowHeights();
+        ajustarAlturaLateral(lista);
+    }
 
-    this.addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowOpened(WindowEvent e) {
-        super.windowOpened(e);
+    @Override
+    public void setSelectedEFiltro(EFiltro eFiltro) {
+        jcbFiltro.setSelectedItem(eFiltro);
+    }
 
-        try {
-          manual.listarTodos();
-        } catch (SQLException ex) {
-          // TODO: 08/02/2023 exibir notificação.
-          throw new RuntimeException(ex);
+    @Override
+    public EFiltro getSelectedEFiltro() {
+        return (EFiltro) jcbFiltro.getSelectedItem();
+    }
+
+    @Override
+    public boolean isMatchCase() {
+        return jtbMatchCase.isSelected();
+    }
+
+    @Override
+    public boolean isOcorrenciaPalavra() {
+        return jtbOcorrenciaPalavra.isSelected();
+    }
+
+    @Override
+    public String getFiltro() {
+        return jtfFiltro.getText();
+    }
+
+    /**
+     * <p>
+     * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma
+     * coluna com linhas populadas com o 'idGrupo' da lista passada por parâmetro(lista). Também aplica a altura da linha
+     * da jtSchemanfe na jtSchemaNfeLateral correspondente.
+     * </p>
+     *
+     * @param lista lista de objetos SchemaNfe.
+     */
+    private void ajustarAlturaLateral(List<SchemaNfe> lista) {
+        final Object[][] data = manual.getMatrizIdGrupo(lista);
+        final Object[] columnNames = manual.getVetorColunaIdGrupo();
+        jtSchemaNfeLateral.setModel(new DefaultTableModel(data, columnNames));
+
+        IntStream.range(0, lista.size()).forEachOrdered(index -> {
+            final int rowHeight = jtSchemaNfe.getRowHeight(index);
+            jtSchemaNfeLateral.setRowHeight(index, rowHeight);
+        });
+    }
+
+    private void inits() {
+        manual = new Manual();
+        manual.setView(this);
+
+        tmSchemaNfe = new TableModel(SchemaNfe.class);
+        jtSchemaNfe.setModel(tmSchemaNfe);
+        tcrAltura = new TableCellRendererAltura(jtSchemaNfe);
+
+        final TableCellRendererHtml tcrHtml = new TableCellRendererHtml();
+        final TableColumnModel columnModel = jtSchemaNfe.getColumnModel();
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            columnModel.getColumn(i).setCellRenderer(tcrHtml);
         }
-      }
-    });
+    }
 
-    jtfFiltro.addKeyListener(new KeyAdapter() {
-      @Override
-      public void keyReleased(KeyEvent e) {
-        super.keyReleased(e);
+    private void initEvents() {
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-          try {
-            manual.listarPorFiltro(jtfFiltro.getText());
-          } catch (SQLException ex) {
-            // TODO: 07/02/2023 exibir notificação.
-            ex.printStackTrace();
-          }
-        }
-      }
-    });
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                super.windowOpened(e);
 
-    jtfFiltro.getDocument().addDocumentListener(new DocumentListenerAdapter() {
+                try {
+                    manual.listarTodos();
+                } catch (SQLException ex) {
+                    // TODO: 08/02/2023 exibir notificação.
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
-      @Override
-      public void removeUpdate(DocumentEvent e) {
-        try {
-          if (jtfFiltro.getText().trim().equals("")) {
-            manual.listarTodos();
-          }
-        } catch (SQLException ex) {
-          ex.printStackTrace();
-          // TODO: 11/02/2023 exibir notificação
-        }
-      }
-    });
+        jtfFiltro.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
 
-    jtSchemaNfe.getTableHeader().addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        super.mouseClicked(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    try {
+                        manual.listarPorFiltro(jtfFiltro.getText());
+                    } catch (SQLException ex) {
+                        // TODO: 07/02/2023 exibir notificação.
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
 
-        final int colunaPoint = jtSchemaNfe.getTableHeader().columnAtPoint(e.getPoint());
-        final String headerValue = jtSchemaNfe.getColumnModel().getColumn(colunaPoint).getHeaderValue().toString();
-        manual.selecionarFiltro(headerValue);
-      }
-    });
+        jtfFiltro.getDocument().addDocumentListener(new DocumentListenerAdapter() {
 
-    jtbMatchCase.addActionListener(actionEvent -> {
-      if (!jtfFiltro.getText().trim().equals("")) {
-        try {
-          manual.listarPorFiltro(jtfFiltro.getText());
-        } catch (SQLException e) {
-          throw new RuntimeException(e);
-          // TODO: 16/02/2023 exibir notificação.
-        }
-      }
-    });
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                try {
+                    manual.listarTodos();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    // TODO: 11/02/2023 exibir notificação
+                }
+            }
+        });
 
-    jtbOcorrenciaPalavra.addActionListener(actionEvent -> {
-      if (!jtfFiltro.getText().trim().equals("")) {
-        try {
-          manual.listarPorFiltro(jtfFiltro.getText());
-        } catch (SQLException e) {
-          throw new RuntimeException(e);
-          // TODO: 16/02/2023 exibir notificação.
-        }
-      }
-    });
-  }
+        jtSchemaNfe.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
 
-  private JComboBox<EFiltro> jcbFiltro;
-  private JTextField jtfFiltro;
-  private JToggleButton jtbMatchCase;
-  private JToggleButton jtbOcorrenciaPalavra;
-  private JScrollPane jspSchemaNfe;
-  private JTable jtSchemaNfe;
-  private JTable jtSchemaNfeLateral;
+                final int colunaPoint = jtSchemaNfe.getTableHeader().columnAtPoint(e.getPoint());
+                final String headerValue = jtSchemaNfe.getColumnModel().getColumn(colunaPoint).getHeaderValue().toString();
+                manual.selecionarFiltro(headerValue);
+            }
+        });
 
-  public void initComponents() {
-    setTitle("NFSchemaKit");
-    setExtendedState(JFrame.MAXIMIZED_BOTH);
-    setLayout(new BorderLayout());
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jtbMatchCase.addActionListener(actionEvent -> {
+            if (!jtfFiltro.getText().trim().equals("")) {
+                try {
+                    manual.listarPorFiltro(jtfFiltro.getText());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                    // TODO: 16/02/2023 exibir notificação.
+                }
+            }
+        });
 
-    jcbFiltro = new JComboBox<>(EFiltro.values());
-    jcbFiltro.setPreferredSize(new Dimension(150, 25));
+        jtbOcorrenciaPalavra.addActionListener(actionEvent -> {
+            if (!jtfFiltro.getText().trim().equals("")) {
+                try {
+                    manual.listarPorFiltro(jtfFiltro.getText());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                    // TODO: 16/02/2023 exibir notificação.
+                }
+            }
+        });
+    }
 
-    jtfFiltro = new JTextField();
-    jtfFiltro.setPreferredSize(new Dimension(400, 25));
+    private JComboBox<EFiltro> jcbFiltro;
+    private JTextField jtfFiltro;
+    private JToggleButton jtbMatchCase;
+    private JToggleButton jtbOcorrenciaPalavra;
+    private JScrollPane jspSchemaNfe;
+    private JTable jtSchemaNfe;
+    private JTable jtSchemaNfeLateral;
 
-    jtbMatchCase = new JToggleButton("Mc");
-    jtbMatchCase.setPreferredSize(new Dimension(60, 25));
+    public void initComponents() {
+        setTitle("NFSchemaKit");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    jtbOcorrenciaPalavra = new JToggleButton("P");
-    jtbOcorrenciaPalavra.setPreferredSize(new Dimension(60, 25));
+        jcbFiltro = new JComboBox<>(EFiltro.values());
+        jcbFiltro.setPreferredSize(new Dimension(150, 25));
 
-    jtSchemaNfe = new JTable();
-    jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    jspSchemaNfe = new JScrollPane(jtSchemaNfe);
-    JTableAjusteColunas.alinharHeader(jtSchemaNfe);
+        jtfFiltro = new JTextField();
+        jtfFiltro.setPreferredSize(new Dimension(400, 25));
 
-    jtSchemaNfeLateral = new JTable();
-    jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(75, 0));
-    jtSchemaNfeLateral.setDefaultRenderer(Object.class, new TableCellRendererHeader(jtSchemaNfe));
-    jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
+        jtbMatchCase = new JToggleButton("Mc");
+        jtbMatchCase.setPreferredSize(new Dimension(60, 25));
 
-    final JPanel jpTop = new JPanel(new BorderLayout());
-    final JPanel jpTopII = new JPanel();
+        jtbOcorrenciaPalavra = new JToggleButton("P");
+        jtbOcorrenciaPalavra.setPreferredSize(new Dimension(60, 25));
 
-    jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
-    jpTopII.add(jcbFiltro);
-    jpTopII.add(jtfFiltro);
-    jpTopII.add(jtbMatchCase);
-    jpTopII.add(jtbOcorrenciaPalavra);
+        jtSchemaNfe = new JTable();
+        jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jspSchemaNfe = new JScrollPane(jtSchemaNfe);
+        JTableAjusteColunas.alinharHeader(jtSchemaNfe);
 
-    jpTop.add(jpTopII, BorderLayout.CENTER);
+        jtSchemaNfeLateral = new JTable();
+        jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(75, 0));
+        jtSchemaNfeLateral.setDefaultRenderer(Object.class, new TableCellRendererHeader(jtSchemaNfe));
+        jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
 
-    add(jpTop, BorderLayout.NORTH);
-    add(jspSchemaNfe, BorderLayout.CENTER);
-  }
+        final JPanel jpTop = new JPanel(new BorderLayout());
+        final JPanel jpTopII = new JPanel();
+
+        jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
+        jpTopII.add(jcbFiltro);
+        jpTopII.add(jtfFiltro);
+        jpTopII.add(jtbMatchCase);
+        jpTopII.add(jtbOcorrenciaPalavra);
+
+        jpTop.add(jpTopII, BorderLayout.CENTER);
+
+        add(jpTop, BorderLayout.NORTH);
+        add(jspSchemaNfe, BorderLayout.CENTER);
+    }
 }

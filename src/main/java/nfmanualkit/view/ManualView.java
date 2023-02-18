@@ -16,4 +16,6 @@ public interface ManualView {
     boolean isMatchCase();
 
     boolean isOcorrenciaPalavra();
+
+    String getFiltro();
 }
