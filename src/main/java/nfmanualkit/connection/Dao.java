@@ -120,7 +120,7 @@ public class Dao implements DaoPresenter {
         break;
 
       default:
-      query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro() + operador + "? ORDER BY id";
+      query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? ORDER BY id";
     }
 
     return query;
