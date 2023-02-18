@@ -41,7 +41,7 @@ public enum EFiltro {
   }
 
   public String getFiltro(boolean matchCase) {
-    String f = matchCase ? "lower(" + this.filtro + ")" : "";
+    String f = matchCase ? "lower(" + this.filtro + ")" : filtro;
     return f;
   }
 

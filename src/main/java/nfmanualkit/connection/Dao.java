@@ -98,15 +98,15 @@ public class Dao implements DaoPresenter {
     switch (eFiltro) {
       case TODOS:
         query = "SELECT * FROM schema_nfe WHERE " +
-                EFiltro.IDGRUPO.getFiltro() + operador + "? OR \n" +
-                EFiltro.CAMPO.getFiltro() + operador + "? OR \n" +
-                EFiltro.DESCRICAO.getFiltro() + operador + "? OR \n" +
-                EFiltro.ELEMENTO.getFiltro() + operador + "? OR \n" +
-                EFiltro.PAI.getFiltro() + operador + "? OR \n" +
-                EFiltro.TIPO.getFiltro() + operador + "? OR \n" +
-                EFiltro.OCORRENCIA.getFiltro() +  operador + "? OR \n" +
-                EFiltro.TAMANHO.getFiltro() + operador + "? OR \n" +
-                EFiltro.OBSERVACAO.getFiltro() + operador + "? " +
+                EFiltro.IDGRUPO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.CAMPO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.DESCRICAO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.ELEMENTO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.PAI.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.TIPO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.OCORRENCIA.getFiltro(matchCase) +  operador + "? OR \n" +
+                EFiltro.TAMANHO.getFiltro(matchCase) + operador + "? OR \n" +
+                EFiltro.OBSERVACAO.getFiltro(matchCase) + operador + "? " +
                 "ORDER BY id";
         break;
 
