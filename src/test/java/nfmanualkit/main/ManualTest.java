@@ -76,6 +76,20 @@ public class ManualTest {
   }
 
   @Test
+  public void deveListarTodosRegistrosComFiltroVazio() throws SQLException {
+    final String filtro = "";
+    final List list = mock(List.class);
+
+    when(daoPresenter.listar()).thenReturn(list);
+    doNothing().when(view).exibir(list);
+    manual.listarPorFiltro(filtro);
+
+    verify(daoPresenter).listar();
+    verify(view).exibir(list);
+    verifyNoMoreInteractions(daoPresenter, view);
+  }
+
+  @Test
   public void deveListarPorFiltro() throws SQLException {
     final EFiltro eFiltro = EFiltro.IDGRUPO;
     final String filtro = "termo do filtro";

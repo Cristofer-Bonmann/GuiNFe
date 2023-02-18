@@ -111,7 +111,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
       public void keyReleased(KeyEvent e) {
         super.keyReleased(e);
 
-        if (!jtfFiltro.getText().trim().equals("") && e.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
           try {
             manual.listarPorFiltro(jtfFiltro.getText());
           } catch (SQLException ex) {
