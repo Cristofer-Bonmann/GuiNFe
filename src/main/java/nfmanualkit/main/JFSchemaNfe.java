@@ -111,7 +111,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
       public void keyReleased(KeyEvent e) {
         super.keyReleased(e);
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (!jtfFiltro.getText().trim().equals("") && e.getKeyCode() == KeyEvent.VK_ENTER) {
           try {
             manual.listarPorFiltro(jtfFiltro.getText());
           } catch (SQLException ex) {
@@ -127,7 +127,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
       @Override
       public void removeUpdate(DocumentEvent e) {
         try {
-          if (jtfFiltro.getText().equals("")) {
+          if (jtfFiltro.getText().trim().equals("")) {
             manual.listarTodos();
           }
         } catch (SQLException ex) {
@@ -149,7 +149,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     });
 
     jtbMatchCase.addActionListener(actionEvent -> {
-      if (jtbMatchCase.isSelected() && jtfFiltro.getText().trim().equals("")) {
+      if (!jtfFiltro.getText().trim().equals("")) {
         try {
           manual.listarPorFiltro(jtfFiltro.getText());
         } catch (SQLException e) {
@@ -160,7 +160,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     });
 
     jtbOcorrenciaPalavra.addActionListener(actionEvent -> {
-      if (jtbOcorrenciaPalavra.isSelected() && jtfFiltro.getText().trim().equals("")) {
+      if (!jtfFiltro.getText().trim().equals("")) {
         try {
           manual.listarPorFiltro(jtfFiltro.getText());
         } catch (SQLException e) {
