@@ -97,6 +97,18 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
     private void initEvents() {
 
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+            if (e.getID() == KeyEvent.KEY_RELEASED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                final int i = JOptionPane.showConfirmDialog(this, "Deseja fechar a aplicação?",
+                        "Confirme", JOptionPane.YES_OPTION);
+                if (i == JOptionPane.YES_OPTION) {
+                    dispose();
+                }
+                return true;
+            }
+            return false;
+        });
+
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
