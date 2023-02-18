@@ -1,5 +1,6 @@
 import nfmanualkit.connection.ConnectTest;
 import nfmanualkit.connection.DaoTest;
+import nfmanualkit.enumeracao.EFiltroTest;
 import nfmanualkit.main.ManualTest;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         ConnectTest.class,
         DaoTest.class,
+        EFiltroTest.class,
         ManualTest.class,
 })
 public class SuiteExec {

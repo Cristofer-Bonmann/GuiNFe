@@ -40,6 +40,10 @@ public enum EFiltro {
     return this.filtro;
   }
 
+  public String getFiltroSQLLower() {
+    return "lower(" + this.filtro + ")";
+  }
+
   public String getRotulo() {
     return this.rotulo;
   }
@@ -48,5 +52,4 @@ public enum EFiltro {
   public String toString() {
     return this.rotulo;
   }
-
 }
