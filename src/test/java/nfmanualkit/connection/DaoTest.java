@@ -259,6 +259,26 @@ public class DaoTest {
   }
 
   @Test
+  public void deveMontarFiltroComMatchCase() {
+    final String filtro = "Termo do filtro";
+    final boolean matchCase = true;
+
+    final String filtroMatchCase = dao.montarFiltroMatchCase(filtro, matchCase);
+
+    assertThat(filtroMatchCase, is("Termo do filtro"));
+  }
+
+  @Test
+  public void deveMontarFiltroSemMatchCase() {
+    final String filtro = "Termo do filtro";
+    final boolean matchCase = false;
+
+    final String filtroMatchCase = dao.montarFiltroMatchCase(filtro, matchCase);
+
+    assertThat(filtroMatchCase, is("termo do filtro"));
+  }
+
+  @Test
   public void deveMontarFiltroSemOcorrenciaDePalavra() {
     final String filtro = "filtro";
     final boolean ocorrenciaPalavra = false;

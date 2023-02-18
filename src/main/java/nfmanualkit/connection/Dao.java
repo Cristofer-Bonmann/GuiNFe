@@ -111,12 +111,15 @@ public class Dao implements DaoPresenter {
         break;
 
       case IDGRUPO:
-        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? OR " + EFiltro.PAI.getFiltro(matchCase) + operador + "? ORDER BY id";
+        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? OR "
+                + EFiltro.PAI.getFiltro(matchCase) + operador + "? ORDER BY id";
         break;
 
       case CAMPO:
-        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? OR " + EFiltro.PAI.getFiltro(matchCase) + operador +
-        "(SELECT idGrupo FROM schema_nfe WHERE " + EFiltro.CAMPO.getFiltro(matchCase) + operador + "? ORDER BY id LIMIT 1) ORDER BY id";
+        query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? OR "
+                + EFiltro.PAI.getFiltro(matchCase) + operador +
+        "(SELECT idGrupo FROM schema_nfe WHERE " + EFiltro.CAMPO.getFiltro(matchCase) + operador + "? " +
+                "ORDER BY id LIMIT 1) ORDER BY id";
         break;
 
       default:
@@ -129,6 +132,11 @@ public class Dao implements DaoPresenter {
   // TODO: 17/02/2023 inserir doc
   protected String montarFiltroComOcorrenciaPalavra(String filtro, boolean ocorrenciaPalavra) {
     return ocorrenciaPalavra ? "%" + filtro + "%" : filtro;
+  }
+
+  // TODO: 17/02/2023 inserir doc
+  protected String montarFiltroMatchCase(String filtro, boolean matchCase) {
+    return matchCase ? filtro : filtro.toLowerCase();
   }
 
   /**
@@ -145,6 +153,7 @@ public class Dao implements DaoPresenter {
   public List<SchemaNfe> listar(EFiltro eFiltro, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws SQLException {
     final String query = montarQuery(eFiltro, matchCase, ocorrenciaPalavra);
     filtro = montarFiltroComOcorrenciaPalavra(filtro, ocorrenciaPalavra);
+    filtro = montarFiltroMatchCase(filtro, matchCase);
 
     final PreparedStatement preparedStatement = getConnection().prepareStatement(query);
 
