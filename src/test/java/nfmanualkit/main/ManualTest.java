@@ -78,7 +78,7 @@ public class ManualTest {
   @Test
   public void deveListarPorFiltro() throws SQLException {
     final EFiltro eFiltro = EFiltro.IDGRUPO;
-    final String filtro = "";
+    final String filtro = "termo do filtro";
     final List<SchemaNfe> lista = Mockito.mock(List.class);
     final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;

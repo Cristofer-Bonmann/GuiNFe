@@ -55,11 +55,13 @@ public class Manual {
    */
   // TODO: 16/02/2023 atualização para adicionar parâmetro 'matchCase'.
   public void listarPorFiltro(String filtro) throws SQLException {
-    final EFiltro eFiltro = view.getSelectedEFiltro();
-    final boolean matchCase = view.isMatchCase();
-    final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
-    final List<SchemaNfe> lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
-    view.exibir(lista);
+    if (!filtro.trim().equals("")) {
+      final EFiltro eFiltro = view.getSelectedEFiltro();
+      final boolean matchCase = view.isMatchCase();
+      final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
+      final List<SchemaNfe> lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
+      view.exibir(lista);
+    }
   }
 
   // TODO: 09/02/2023 inserir doc
