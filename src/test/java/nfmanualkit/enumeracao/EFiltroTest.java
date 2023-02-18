@@ -9,7 +9,7 @@ public class EFiltroTest {
     
     @Test
     public void deveRetornarFiltroComFuncSQLLower() {
-        final boolean matchCase = true;
+        final boolean matchCase = false;
 
         final String filtroIdGrupo = EFiltro.IDGRUPO.getFiltro(matchCase);
         final String filtroCampo = EFiltro.CAMPO.getFiltro(matchCase);

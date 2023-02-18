@@ -42,7 +42,7 @@ public enum EFiltro {
 
   // TODO: 17/02/2023 inserir doc
   public String getFiltro(boolean matchCase) {
-    String f = matchCase ? "lower(" + this.filtro + ")" : filtro;
+    String f = !matchCase ? "lower(" + this.filtro + ")" : filtro;
     return f;
   }
 

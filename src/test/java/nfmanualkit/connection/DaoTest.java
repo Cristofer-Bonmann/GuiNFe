@@ -23,7 +23,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroObservacao() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.OBSERVACAO, matchCase, ocorrenciaPalavra);
@@ -34,7 +34,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroTamanho() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.TAMANHO, matchCase, ocorrenciaPalavra);
@@ -45,7 +45,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroOcorrencia() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.OCORRENCIA, matchCase, ocorrenciaPalavra);
@@ -56,7 +56,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroTipo() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.TIPO, matchCase, ocorrenciaPalavra);
@@ -67,7 +67,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroPai() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.PAI, matchCase, ocorrenciaPalavra);
@@ -78,7 +78,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroElemento() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.ELEMENTO, matchCase, ocorrenciaPalavra);
@@ -89,7 +89,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroDescricao() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.DESCRICAO, matchCase, ocorrenciaPalavra);
@@ -99,8 +99,8 @@ public class DaoTest {
   }
 
   @Test
-  public void deveMontarQueryFiltroMatchCase() {
-    final boolean matchCase = true;
+  public void deveMontarQueryFiltroSemMatchCase() {
+    final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.DESCRICAO, matchCase, ocorrenciaPalavra);
@@ -111,7 +111,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComOcorrenciaDePalavraComOutrosFiltros() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = true;
 
     final String query = dao.montarQuery(EFiltro.DESCRICAO, matchCase, ocorrenciaPalavra);
@@ -121,8 +121,8 @@ public class DaoTest {
   }
 
   @Test
-  public void deveMontarQueryFiltroCampoMatchCase() {
-    final boolean matchCase = true;
+  public void deveMontarQueryFiltroCampoSemMatchCase() {
+    final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
@@ -135,7 +135,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComOcorrenciaDePalavraFiltroCampo() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = true;
 
     final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
@@ -148,7 +148,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroCampo() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
@@ -161,7 +161,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComOcorrenciaDePalavraFiltroIdGrupo() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = true;
 
     final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase, ocorrenciaPalavra);
@@ -171,8 +171,8 @@ public class DaoTest {
   }
 
   @Test
-  public void deveMontarQueryFiltroIdGrupoMatchCase() {
-    final boolean matchCase = true;
+  public void deveMontarQueryFiltroIdGrupoSemMatchCase() {
+    final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase, ocorrenciaPalavra);
@@ -183,7 +183,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryFiltroIdGrupo() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase, ocorrenciaPalavra);
@@ -194,7 +194,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComOcorrenciaDePalavraComTodosFiltros() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = true;
 
     final String query = dao.montarQuery(EFiltro.TODOS, matchCase, ocorrenciaPalavra);
@@ -215,8 +215,8 @@ public class DaoTest {
   }
 
   @Test
-  public void deveMontarQueryComTodosFiltrosMatchCase() {
-    final boolean matchCase = true;
+  public void deveMontarQueryComTodosFiltrosSemMatchCase() {
+    final boolean matchCase = false;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.TODOS, matchCase, ocorrenciaPalavra);
@@ -238,7 +238,7 @@ public class DaoTest {
 
   @Test
   public void deveMontarQueryComTodosFiltros() {
-    final boolean matchCase = false;
+    final boolean matchCase = true;
     final boolean ocorrenciaPalavra = false;
 
     final String query = dao.montarQuery(EFiltro.TODOS, matchCase, ocorrenciaPalavra);
