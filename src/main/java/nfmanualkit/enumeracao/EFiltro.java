@@ -40,6 +40,7 @@ public enum EFiltro {
     return this.filtro;
   }
 
+  // TODO: 17/02/2023 inserir doc
   public String getFiltro(boolean matchCase) {
     String f = matchCase ? "lower(" + this.filtro + ")" : filtro;
     return f;

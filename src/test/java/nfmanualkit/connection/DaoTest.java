@@ -110,6 +110,19 @@ public class DaoTest {
   }
 
   @Test
+  public void deveMontarQueryFiltroCampoMatchCase() {
+    final boolean matchCase = true;
+    final boolean ocorrenciaPalavra = false;
+
+    final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE lower(campo) = ? OR lower(pai) = " +
+            "(SELECT idGrupo FROM schema_nfe WHERE lower(campo) = ? ORDER BY id LIMIT 1)" +
+            " ORDER BY id";
+    assertThat(query, is(esperado));
+  }
+
+  @Test
   public void deveMontarQueryComOcorrenciaDePalavraFiltroCampo() {
     final boolean matchCase = false;
     final boolean ocorrenciaPalavra = true;
@@ -143,6 +156,17 @@ public class DaoTest {
     final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase, ocorrenciaPalavra);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE idGrupo LIKE ? OR pai LIKE ? ORDER BY id";
+    assertThat(query, is(esperado));
+  }
+
+  @Test
+  public void deveMontarQueryFiltroIdGrupoMatchCase() {
+    final boolean matchCase = true;
+    final boolean ocorrenciaPalavra = false;
+
+    final String query = dao.montarQuery(EFiltro.IDGRUPO, matchCase, ocorrenciaPalavra);
+
+    final String esperado = "SELECT * FROM schema_nfe WHERE lower(idGrupo) = ? OR lower(pai) = ? ORDER BY id";
     assertThat(query, is(esperado));
   }
 
