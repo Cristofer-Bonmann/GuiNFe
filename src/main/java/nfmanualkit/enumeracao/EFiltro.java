@@ -40,8 +40,9 @@ public enum EFiltro {
     return this.filtro;
   }
 
-  public String getFiltroSQLLower() {
-    return "lower(" + this.filtro + ")";
+  public String getFiltro(boolean matchCase) {
+    String f = matchCase ? "lower(" + this.filtro + ")" : "";
+    return f;
   }
 
   public String getRotulo() {
