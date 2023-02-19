@@ -99,15 +99,19 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jtbOcorrenciaPalavra.setToolTipText(Recursos.get("jtbocorrenciacaracteres_tolltiptext"));
     }
 
+    private void fechar() {
+        final int i = JOptionPane.showConfirmDialog(this, "Deseja fechar a aplicação?",
+                "Confirme", JOptionPane.YES_OPTION);
+        if (i == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }
+
     private void initEvents() {
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_RELEASED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                final int i = JOptionPane.showConfirmDialog(this, "Deseja fechar a aplicação?",
-                        "Confirme", JOptionPane.YES_OPTION);
-                if (i == JOptionPane.YES_OPTION) {
-                    dispose();
-                }
+                fechar();
                 return true;
             }
             return false;
@@ -124,6 +128,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
                     // TODO: 08/02/2023 exibir notificação.
                     throw new RuntimeException(ex);
                 }
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fechar();
             }
         });
 
@@ -202,7 +211,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         setTitle("NFSchemaKit");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         jcbFiltro = new JComboBox<>(EFiltro.values());
         jcbFiltro.setPreferredSize(new Dimension(150, 25));
