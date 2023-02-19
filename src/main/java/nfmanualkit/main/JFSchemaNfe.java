@@ -206,12 +206,20 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     private JScrollPane jspSchemaNfe;
     private JTable jtSchemaNfe;
     private JTable jtSchemaNfeLateral;
+    private JLabel jlAtualizacaoTecnica;
+    private JLabel jlVersao;
 
     public void initComponents() {
         setTitle("NFSchemaKit");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        final JPanel jpPrincipal = new JPanel(new BorderLayout());
+        final JPanel jpCentro = new JPanel(new BorderLayout());
+        final JPanel jpTop = new JPanel(new BorderLayout());
+        final JPanel jpTopII = new JPanel();
+        final JPanel jpSouth = new JPanel(new BorderLayout());
 
         jcbFiltro = new JComboBox<>(EFiltro.values());
         jcbFiltro.setPreferredSize(new Dimension(150, 25));
@@ -230,14 +238,17 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jspSchemaNfe = new JScrollPane(jtSchemaNfe);
         JTableAjusteColunas.alinharHeader(jtSchemaNfe);
 
+        final Font font = new Font("Dialog", Font.BOLD, 17);
+        jlAtualizacaoTecnica = new JLabel(Recursos.get("jlatualizacaotecnica", Sistema.ATUALIZACAO_TECNICA));
+        jlAtualizacaoTecnica.setFont(font);
+        jlVersao = new JLabel(Recursos.get("jlversao"));
+        jlVersao.setFont(font);
+
         jtSchemaNfeLateral = new JTable();
         jtSchemaNfeLateral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtSchemaNfeLateral.setPreferredScrollableViewportSize(new Dimension(75, 0));
         jtSchemaNfeLateral.setDefaultRenderer(Object.class, new TableCellRendererHeader(jtSchemaNfe));
         jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
-
-        final JPanel jpTop = new JPanel(new BorderLayout());
-        final JPanel jpTopII = new JPanel();
 
         jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
         jpTopII.add(jcbFiltro);
@@ -245,9 +256,15 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jpTopII.add(jtbMatchCase);
         jpTopII.add(jtbOcorrenciaPalavra);
 
-        jpTop.add(jpTopII, BorderLayout.CENTER);
+        jpSouth.add(jlAtualizacaoTecnica, BorderLayout.WEST);
+        jpSouth.add(jlVersao, BorderLayout.EAST);
 
-        add(jpTop, BorderLayout.NORTH);
-        add(jspSchemaNfe, BorderLayout.CENTER);
+        jpTop.add(jpTopII, BorderLayout.CENTER);
+        jpCentro.add(jpTop, BorderLayout.NORTH);
+        jpCentro.add(jspSchemaNfe, BorderLayout.CENTER);
+        jpCentro.add(jpSouth, BorderLayout.SOUTH);
+        jpPrincipal.add(jpCentro);
+
+        add(jpPrincipal, BorderLayout.CENTER);
     }
 }

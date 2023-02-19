@@ -1,9 +1,6 @@
 package nfmanualkit.util;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -17,31 +14,51 @@ import java.util.ResourceBundle;
  */
 public class Recursos {
 
-    private static String nomeArquivo = "rotulos_pt_BR.properties";
-
     private Recursos(){}
 
     /**
      * Retorna o valor de um recurso pelo nome(nomeRecurso). <br>
-     * Se for disparado alguma exceção o valor retornado será: "<nomeRecurso> não encontrado".
+     *
+     * @param nomeRecurso nome do recurso.
+     * @return String com o valor do recurso.
+     */
+    private static String getRecurso(String nomeRecurso) {
+        Locale.setDefault(new Locale("pt", "BR"));
+        final ResourceBundle bundle = ResourceBundle.getBundle("rotulos", new UTF8Control());
+
+        return bundle.getString(nomeRecurso);
+    }
+
+    /**
+     * Retorna o valor de um recurso pelo nome(nomeRecurso). <br>
      *
      * @param nomeRecurso nome do recurso.
      * @return String com o valor do recurso.
      */
     public static String get(String nomeRecurso) {
+        return getRecurso(nomeRecurso);
+    }
+
+    /**
+     * Recebe o nomedo recurso que será retornado e o parâmetro que será adicionado no valor desse retorno. Ex.:<br>
+     * <pre>
+     *     //no arquivo recursos.propierties:
+     *     msg_001 = Apenas uma mensagem de:%s
+     *
+     *     //no código fonte:
+     *     final String msg = Recursos.get("msg_001", "João");
+     *     //será retornado a String: Apenas uma mensagem de:João
+     * </pre>
+     *
+     * @param nomeRecurso nome do recurso.
+     * @param parametro valor que será substituído na variável de controle %s ao retornar o recurso.
+     * @return String com o valor do recurso.
+     */
+    public static String get(String nomeRecurso, String parametro) {
         String recurso;
-        try {
-            final InputStream isArquivo = Recursos.class.getClassLoader().getResourceAsStream(nomeArquivo);
-            final InputStreamReader isr = new InputStreamReader(isArquivo, StandardCharsets.UTF_8);
-            final Properties properties = new Properties();
 
-            properties.load(isr);
-            recurso = properties.getProperty(nomeRecurso);
-
-        } catch (Exception e){
-            e.printStackTrace();
-            recurso = nomeRecurso + " não encontrado.";
-        }
+        recurso = getRecurso(nomeRecurso);
+        recurso = String.format(recurso, parametro);
 
         return recurso;
     }
