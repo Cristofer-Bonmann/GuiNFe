@@ -93,6 +93,10 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
             columnModel.getColumn(i).setCellRenderer(tcrHtml);
         }
+
+        ToolTipManager.sharedInstance().setInitialDelay(0);
+        jtbMatchCase.setToolTipText(Recursos.get("jtbmatchcase_tolltiptext"));
+        jtbOcorrenciaPalavra.setToolTipText(Recursos.get("jtbocorrenciacaracteres_tolltiptext"));
     }
 
     private void initEvents() {
