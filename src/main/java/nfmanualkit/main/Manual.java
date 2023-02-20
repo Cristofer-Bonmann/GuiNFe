@@ -120,7 +120,13 @@ public class Manual {
     view.setSelectedEFiltro(eFiltro);
   }
 
-  // TODO: 20/02/2023 inserir doc
+  /**
+   * Lê e carrega o arquivo 'conf.properties' localizado na raíz do projeto.
+   *
+   * @return objeto Proprieties.
+   *
+   * @throws IOException
+   */
   protected Properties getProperties() throws IOException {
     final FileInputStream fisConf = new FileInputStream("conf.properties");
 
@@ -130,7 +136,12 @@ public class Manual {
     return properties;
   }
 
-  // TODO: 19/02/2023 inserir doc
+  /**
+   * Atribui nos respectivos componentes da {@link ManualView} os valores do arquivo 'conf.properties'. <br>
+   * Os valores são: filtro_selecionado, matchcase e ocorrencia_letra.
+   *
+   * @throws IOException
+   */
   public void carregarConfiguracoes() throws IOException {
     final Properties properties = getProperties();
 
@@ -143,7 +154,16 @@ public class Manual {
     view.setOcorrenciaLetraSelected(ocorrenciaLetra);
   }
 
-  // TODO: 20/02/2023 inserir doc
+  /**
+   * Grava no arquivo {@link Properties}(conf.properties) os valores dos parâmetros(filtro, matchCase e ocorrenciaPalavra)
+   * passados.
+   *
+   * @param properties arquivo 'conf.properties' localizado na raíz do projeto.
+   * @param filtro proprieadde 'name' de um {@link EFiltro};
+   * @param matchCase se pesquisa está definida como 'matchCase'.
+   * @param ocorrenciaPalavra se a pesquisa está definida como 'ocorrenciaPalavra'.
+   * @throws IOException
+   */
   protected void confStore(Properties properties, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws IOException {
     properties.setProperty("filtro_selecionado", filtro);
     properties.setProperty("matchcase", String.valueOf(matchCase));
@@ -153,7 +173,10 @@ public class Manual {
     properties.store(fos, "'conf.properties' atualizado.");
   }
 
-  // TODO: 20/02/2023 inserir doc
+  /**
+   * Grava as configurações no arquivo 'conf.properties'.
+   * @throws IOException
+   */
   public void salvarConfiguracoes() throws IOException {
     final EFiltro eFiltro = view.getSelectedEFiltro();
     final boolean matchCase = view.isMatchCase();
