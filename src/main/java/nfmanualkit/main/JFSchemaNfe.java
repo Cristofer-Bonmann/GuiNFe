@@ -119,7 +119,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         }
 
         final Object[] opcoes = new Object[] {"Sim", "Não"};
-        final int i = JOptionPane.showOptionDialog(this, "Deseja fechar a aplicação", "Confirme",
+        final int i = JOptionPane.showOptionDialog(this, "Deseja fechar a aplicação?", "Confirme",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
         if (i == JOptionPane.YES_OPTION) {
             dispose();

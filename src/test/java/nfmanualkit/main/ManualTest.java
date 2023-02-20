@@ -58,7 +58,7 @@ public class ManualTest {
     properties.setProperty("ocorrencia_letra", "true");
     final FileOutputStream fos;
     try {
-      fos = new FileOutputStream("conf.properties");
+      fos = new FileOutputStream(Sistema.PATH_CONF);
       properties.store(fos, "Arquivo 'conf.properties' foi criado!");
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -99,6 +99,7 @@ public class ManualTest {
 
   @Test
   public void deveCarregarConfiguracoes() throws IOException {
+    criarConfProperties();
     final boolean existe = true;
 
     doReturn(existe).when(manual).verifArquivoProperties();

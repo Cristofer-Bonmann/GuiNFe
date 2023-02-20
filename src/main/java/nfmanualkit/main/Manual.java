@@ -129,7 +129,7 @@ public class Manual {
    * @throws IOException
    */
   protected Properties getProperties() throws IOException {
-    final FileInputStream fisConf = new FileInputStream("conf.properties");
+    final FileInputStream fisConf = new FileInputStream(Sistema.PATH_CONF);
 
     final Properties properties = new Properties();
     properties.load(fisConf);
@@ -175,7 +175,7 @@ public class Manual {
     properties.setProperty("matchcase", String.valueOf(matchCase));
     properties.setProperty("ocorrencia_letra", String.valueOf(ocorrenciaPalavra));
 
-    FileOutputStream fos = new FileOutputStream("conf.properties");
+    FileOutputStream fos = new FileOutputStream(Sistema.PATH_CONF);
     properties.store(fos, "'conf.properties' atualizado.");
   }
 
@@ -197,7 +197,7 @@ public class Manual {
    * @return true = arquivo existe, false caso contrário.
    */
   public boolean verifArquivoProperties() throws IOException {
-    final String path = System.getProperty("user.dir") + File.separator + "conf.properties";
+    final String path = Sistema.PATH_CONF;
     final File confProperties = new File(path);
 
     if (!confProperties.exists()) {
