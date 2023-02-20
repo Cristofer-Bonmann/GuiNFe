@@ -7,7 +7,6 @@ import nfmanualkit.connection.Dao;
 import nfmanualkit.view.ManualView;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -122,7 +121,7 @@ public class Manual {
   }
 
   // TODO: 20/02/2023 inserir doc
-  protected Properties getProprierties() throws IOException {
+  protected Properties getProperties() throws IOException {
     final FileInputStream fisConf = new FileInputStream("conf.properties");
 
     final Properties properties = new Properties();
@@ -133,18 +132,18 @@ public class Manual {
 
   // TODO: 19/02/2023 inserir doc
   public void carregarConfiguracoes() throws IOException {
-    final FileInputStream fisConf = new FileInputStream("conf.properties");
+    final Properties properties = getProperties();
 
-    final Properties properties = new Properties();
-    properties.load(fisConf);
-
+    final EFiltro eFiltro = EFiltro.valueOf(properties.get("filtro_selecionado").toString());
     final boolean matchCase = Boolean.parseBoolean(properties.get("matchcase").toString());
     final boolean ocorrenciaLetra = Boolean.parseBoolean(properties.get("ocorrencia_letra").toString());
 
+    view.setSelectedEFiltro(eFiltro);
     view.setMatchCaseSelected(matchCase);
     view.setOcorrenciaLetraSelected(ocorrenciaLetra);
   }
 
+  // TODO: 20/02/2023 inserir doc
   protected void confStore(Properties properties, String filtro, boolean matchCase, boolean ocorrenciaPalavra) throws IOException {
     properties.setProperty("filtro_selecionado", filtro);
     properties.setProperty("matchcase", String.valueOf(matchCase));
@@ -160,7 +159,7 @@ public class Manual {
     final boolean matchCase = view.isMatchCase();
     final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
 
-    final Properties properties = getProprierties();
+    final Properties properties = getProperties();
     confStore(properties, eFiltro.name(), matchCase, ocorrenciaPalavra);
   }
 }

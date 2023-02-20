@@ -47,14 +47,14 @@ public class ManualTest {
     when(view.getSelectedEFiltro()).thenReturn(eFiltro);
     when(view.isMatchCase()).thenReturn(matchCase);
     when(view.isOcorrenciaPalavra()).thenReturn(ocorrenciaLetra);
-    doReturn(properties).when(manual).getProprierties();
+    doReturn(properties).when(manual).getProperties();
     doNothing().when(manual).confStore(properties, eFiltro.name(), matchCase, ocorrenciaLetra);
     manual.salvarConfiguracoes();
 
     verify(view).getSelectedEFiltro();
     verify(view).isMatchCase();
     verify(view).isOcorrenciaPalavra();
-    verify(manual).getProprierties();
+    verify(manual).getProperties();
     verify(manual).confStore(properties, eFiltro.name(), matchCase, ocorrenciaLetra);
     verifyNoMoreInteractions(view);
   }
