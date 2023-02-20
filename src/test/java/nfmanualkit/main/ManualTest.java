@@ -80,6 +80,13 @@ public class ManualTest {
   }
 
   @Test
+  public void deveExistirArquivoConfProperties() throws IOException {
+    final boolean existe = manual.verifArquivoProperties();
+
+    assertThat(existe, is(true));
+  }
+
+  @Test
   public void deveSelecionarFiltroNENHUM() {
     final String nomeColuna = "rotulo desconhecido";
 

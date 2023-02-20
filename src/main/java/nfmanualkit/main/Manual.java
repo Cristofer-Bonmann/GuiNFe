@@ -6,6 +6,7 @@ import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.connection.Dao;
 import nfmanualkit.view.ManualView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -193,9 +194,16 @@ public class Manual {
 
   /**
    * Verifica se o arquivo 'conf.properties' existe no diretório raíz do projeto.
-   * @return
+   * @return true = arquivo existe, false caso contrário.
    */
-  public boolean verifArquivoProperties() {
-    return false;
+  public boolean verifArquivoProperties() throws IOException {
+    final String path = System.getProperty("user.dir") + File.separator + "conf.properties";
+    final File confProperties = new File(path);
+
+    if (!confProperties.exists()) {
+      confProperties.createNewFile();
+    }
+
+    return confProperties.exists();
   }
 }
