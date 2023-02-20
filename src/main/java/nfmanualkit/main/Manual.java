@@ -6,8 +6,13 @@ import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.connection.Dao;
 import nfmanualkit.view.ManualView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.IntStream;
 
 /**
@@ -117,21 +122,16 @@ public class Manual {
   }
 
   // TODO: 19/02/2023 inserir doc
-  public void carregarConfiguracoes() {
-    final boolean matchCase = getConfMatchCase();
+  public void carregarConfiguracoes() throws IOException {
+    final FileInputStream fisConf = new FileInputStream("conf.properties");
+
+    final Properties properties = new Properties();
+    properties.load(fisConf);
+
+    final boolean matchCase = Boolean.parseBoolean(properties.get("matchcase").toString());
+    final boolean ocorrenciaLetra = Boolean.parseBoolean(properties.get("ocorrencia_letra").toString());
+
     view.setMatchCaseSelected(matchCase);
-
-    final boolean confOcorrenciaLetra = getConfOcorrenciaLetra();
-    view.setOcorrenciaLetraSelected(confOcorrenciaLetra);
-  }
-
-  // TODO: 19/02/2023 inserir doc
-  public boolean getConfMatchCase() {
-    return false;
-  }
-
-  // TODO: 19/02/2023 inserir doc
-  public boolean getConfOcorrenciaLetra() {
-    return false;
+    view.setOcorrenciaLetraSelected(ocorrenciaLetra);
   }
 }

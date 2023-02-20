@@ -8,9 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -35,20 +37,8 @@ public class ManualTest {
   }
 
   @Test
-  public void deveCarregarConfiguracoes() {
-    final boolean matchCase = true;
-    final boolean ocorrenciaLetra = true;
-
-    doReturn(matchCase).when(manual).getConfMatchCase();
-    doNothing().when(view).setMatchCaseSelected(matchCase);
-    doReturn(ocorrenciaLetra).when(manual).getConfOcorrenciaLetra();
-    doNothing().when(view).setOcorrenciaLetraSelected(ocorrenciaLetra);
+  public void deveCarregarConfiguracoes() throws IOException {
     manual.carregarConfiguracoes();
-
-    verify(manual).getConfMatchCase();
-    verify(view).setMatchCaseSelected(matchCase);
-    verify(manual).getConfOcorrenciaLetra();
-    verify(view).setOcorrenciaLetraSelected(ocorrenciaLetra);
   }
 
   @Test

@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -133,10 +134,12 @@ public class JFSchemaNfe extends JFrame implements ManualView {
             public void windowOpened(WindowEvent e) {
                 super.windowOpened(e);
 
-                manual.carregarConfiguracoes();
-
                 try {
+                    manual.carregarConfiguracoes();
                     manual.listarTodos();
+
+                } catch (IOException ioe) {
+                    throw new RuntimeException(ioe);
                 } catch (SQLException ex) {
                     // TODO: 08/02/2023 exibir notificação.
                     throw new RuntimeException(ex);
