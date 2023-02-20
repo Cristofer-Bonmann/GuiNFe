@@ -6,3 +6,5 @@ db/*.db
 db/*.db-journal
 NFManualKIt.iml
 conf.properties
+.attach_*
+fontes.txt

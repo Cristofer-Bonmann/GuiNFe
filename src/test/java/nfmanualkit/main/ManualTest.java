@@ -4,10 +4,15 @@ import nfmanualkit.entity.SchemaNfe;
 import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.view.ManualView;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,6 +41,29 @@ public class ManualTest {
     MockitoAnnotations.openMocks(this);
   }
 
+  @BeforeClass
+  public static void setUpClass() {
+    criarConfProperties();
+  }
+
+  @AfterClass
+  public static void teadDown() {
+    criarConfProperties();
+  }
+
+  private static void criarConfProperties() {
+    final Properties properties = new Properties();
+    properties.setProperty("filtro_selecionado", EFiltro.TODOS.name());
+    properties.setProperty("matchcase", "false");
+    properties.setProperty("ocorrencia_letra", "true");
+    final FileOutputStream fos;
+    try {
+      fos = new FileOutputStream("conf.properties");
+      properties.store(fos, "Arquivo 'conf.properties' foi criado!");
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Test
   public void deveSalvarConfiguracoes() throws IOException {
@@ -77,6 +105,16 @@ public class ManualTest {
     manual.carregarConfiguracoes();
 
     verify(manual).verifArquivoProperties();
+  }
+
+  @Test
+  public void deveCriarArquivoConfPropertiesInexistente() throws IOException {
+    final File confProperties = new File(Sistema.PATH_CONF);
+    confProperties.delete();
+
+    final boolean existe = manual.verifArquivoProperties();
+
+    assertThat(existe, is(true));
   }
 
   @Test
