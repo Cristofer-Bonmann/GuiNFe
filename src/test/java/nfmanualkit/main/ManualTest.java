@@ -61,7 +61,12 @@ public class ManualTest {
 
   @Test
   public void deveCarregarConfiguracoes() throws IOException {
+    final boolean existe = true;
+
+    doReturn(existe).when(manual).arquivoPropertiesExiste();
     manual.carregarConfiguracoes();
+
+    verify(manual).arquivoPropertiesExiste();
   }
 
   @Test
