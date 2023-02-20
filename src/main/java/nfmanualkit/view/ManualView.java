@@ -18,4 +18,8 @@ public interface ManualView {
     boolean isOcorrenciaPalavra();
 
     String getFiltro();
+
+    void setMatchCaseSelected(boolean matchCase);
+
+    void setOcorrenciaLetraSelected(boolean ocorrenciaLetra);
 }

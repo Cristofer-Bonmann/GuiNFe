@@ -35,6 +35,23 @@ public class ManualTest {
   }
 
   @Test
+  public void deveCarregarConfiguracoes() {
+    final boolean matchCase = true;
+    final boolean ocorrenciaLetra = true;
+
+    doReturn(matchCase).when(manual).getConfMatchCase();
+    doNothing().when(view).setMatchCaseSelected(matchCase);
+    doReturn(ocorrenciaLetra).when(manual).getConfOcorrenciaLetra();
+    doNothing().when(view).setOcorrenciaLetraSelected(ocorrenciaLetra);
+    manual.carregarConfiguracoes();
+
+    verify(manual).getConfMatchCase();
+    verify(view).setMatchCaseSelected(matchCase);
+    verify(manual).getConfOcorrenciaLetra();
+    verify(view).setOcorrenciaLetraSelected(ocorrenciaLetra);
+  }
+
+  @Test
   public void deveSelecionarFiltroNENHUM() {
     final String nomeColuna = "rotulo desconhecido";
 

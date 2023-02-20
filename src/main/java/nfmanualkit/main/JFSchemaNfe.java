@@ -60,6 +60,16 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         return jtfFiltro.getText();
     }
 
+    @Override
+    public void setMatchCaseSelected(boolean matchCase) {
+        jtbMatchCase.setSelected(matchCase);
+    }
+
+    @Override
+    public void setOcorrenciaLetraSelected(boolean ocorrenciaLetra) {
+        jtbOcorrenciaPalavra.setSelected(ocorrenciaLetra);
+    }
+
     /**
      * <p>
      * Adiciona um {@link DefaultTableModel} no {@link JTable} jtSchemaNfeLateral. Este TableModel possue apenas uma
@@ -122,6 +132,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
             @Override
             public void windowOpened(WindowEvent e) {
                 super.windowOpened(e);
+
+                manual.carregarConfiguracoes();
 
                 try {
                     manual.listarTodos();

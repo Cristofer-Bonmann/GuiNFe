@@ -115,4 +115,23 @@ public class Manual {
     final EFiltro eFiltro = EFiltro.getPorRotulo(nomeColuna);
     view.setSelectedEFiltro(eFiltro);
   }
+
+  // TODO: 19/02/2023 inserir doc
+  public void carregarConfiguracoes() {
+    final boolean matchCase = getConfMatchCase();
+    view.setMatchCaseSelected(matchCase);
+
+    final boolean confOcorrenciaLetra = getConfOcorrenciaLetra();
+    view.setOcorrenciaLetraSelected(confOcorrenciaLetra);
+  }
+
+  // TODO: 19/02/2023 inserir doc
+  public boolean getConfMatchCase() {
+    return false;
+  }
+
+  // TODO: 19/02/2023 inserir doc
+  public boolean getConfOcorrenciaLetra() {
+    return false;
+  }
 }
