@@ -67,6 +67,30 @@ public class ManualTest {
   }
 
   @Test
+  public void naoDeveSalvarConfiguracoesComIOException() throws IOException {
+    final EFiltro eFiltro = EFiltro.IDGRUPO;
+    final boolean matchCase = true;
+    final boolean ocorrenciaLetra = true;
+    final Properties properties = mock(Properties.class);
+    final IOException ioException = new IOException("");
+    final String msg = Recursos.get("erro", ioException.getMessage());
+
+    when(view.getSelectedEFiltro()).thenReturn(eFiltro);
+    when(view.isMatchCase()).thenReturn(matchCase);
+    when(view.isOcorrenciaPalavra()).thenReturn(ocorrenciaLetra);
+    doThrow(ioException).when(manual).getProperties();
+    doNothing().when(view).notificar(msg);
+    manual.salvarConfiguracoes();
+
+    verify(view).getSelectedEFiltro();
+    verify(view).isMatchCase();
+    verify(view).isOcorrenciaPalavra();
+    verify(manual).getProperties();
+    verify(view).notificar(msg);
+    verifyNoMoreInteractions(view);
+  }
+
+  @Test
   public void deveSalvarConfiguracoes() throws IOException {
     final EFiltro eFiltro = EFiltro.IDGRUPO;
     final boolean matchCase = true;

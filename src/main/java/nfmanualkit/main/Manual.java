@@ -189,13 +189,18 @@ public class Manual {
    * Grava as configurações no arquivo 'conf.properties'.
    * @throws IOException
    */
-  public void salvarConfiguracoes() throws IOException {
-    final EFiltro eFiltro = view.getSelectedEFiltro();
-    final boolean matchCase = view.isMatchCase();
-    final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
+  public void salvarConfiguracoes() {
+    try {
+      final EFiltro eFiltro = view.getSelectedEFiltro();
+      final boolean matchCase = view.isMatchCase();
+      final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
 
-    final Properties properties = getProperties();
-    confStore(properties, eFiltro.name(), matchCase, ocorrenciaPalavra);
+      final Properties properties = getProperties();
+      confStore(properties, eFiltro.name(), matchCase, ocorrenciaPalavra);
+
+    } catch (IOException ioe) {
+      view.notificar(Recursos.get("erro", ioe.getMessage()));
+    }
   }
 
   /**
