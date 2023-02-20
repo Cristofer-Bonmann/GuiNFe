@@ -36,6 +36,29 @@ public class ManualTest {
     MockitoAnnotations.openMocks(this);
   }
 
+
+  @Test
+  public void deveSalvarConfiguracoes() throws IOException {
+    final EFiltro eFiltro = EFiltro.IDGRUPO;
+    final boolean matchCase = true;
+    final boolean ocorrenciaLetra = true;
+    final Properties properties = mock(Properties.class);
+
+    when(view.getSelectedEFiltro()).thenReturn(eFiltro);
+    when(view.isMatchCase()).thenReturn(matchCase);
+    when(view.isOcorrenciaPalavra()).thenReturn(ocorrenciaLetra);
+    doReturn(properties).when(manual).getProprierties();
+    doNothing().when(manual).confStore(properties, eFiltro.name(), matchCase, ocorrenciaLetra);
+    manual.salvarConfiguracoes();
+
+    verify(view).getSelectedEFiltro();
+    verify(view).isMatchCase();
+    verify(view).isOcorrenciaPalavra();
+    verify(manual).getProprierties();
+    verify(manual).confStore(properties, eFiltro.name(), matchCase, ocorrenciaLetra);
+    verifyNoMoreInteractions(view);
+  }
+
   @Test
   public void deveCarregarConfiguracoes() throws IOException {
     manual.carregarConfiguracoes();

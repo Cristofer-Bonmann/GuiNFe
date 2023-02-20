@@ -111,6 +111,13 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     }
 
     private void fechar() {
+        try {
+            manual.salvarConfiguracoes();
+        } catch (IOException e) {
+            // TODO: 20/02/2023 exibir notificação.
+            throw new RuntimeException(e);
+        }
+
         final Object[] opcoes = new Object[] {"Sim", "Não"};
         final int i = JOptionPane.showOptionDialog(this, "Deseja fechar a aplicação", "Confirme",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
