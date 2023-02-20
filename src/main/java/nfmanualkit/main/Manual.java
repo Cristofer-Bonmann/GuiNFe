@@ -138,12 +138,14 @@ public class Manual {
 
   /**
    * Atribui nos respectivos componentes da {@link ManualView} os valores do arquivo 'conf.properties'. <br>
-   * Os valores são: filtro_selecionado, matchcase e ocorrencia_letra.
+   * Os valores são: filtro_selecionado, matchcase e ocorrencia_letra. <br>
+   *
+   * As configurações só serão carregadas se o arquivo properties existir.
    *
    * @throws IOException
    */
   public void carregarConfiguracoes() throws IOException {
-    final boolean propertiesExiste = arquivoPropertiesExiste();
+    final boolean propertiesExiste = verifArquivoProperties();
     if (propertiesExiste) {
       final Properties properties = getProperties();
 
@@ -189,7 +191,11 @@ public class Manual {
     confStore(properties, eFiltro.name(), matchCase, ocorrenciaPalavra);
   }
 
-  public boolean arquivoPropertiesExiste() {
+  /**
+   * Verifica se o arquivo 'conf.properties' existe no diretório raíz do projeto.
+   * @return
+   */
+  public boolean verifArquivoProperties() {
     return false;
   }
 }

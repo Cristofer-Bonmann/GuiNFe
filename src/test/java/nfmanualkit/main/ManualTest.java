@@ -60,13 +60,23 @@ public class ManualTest {
   }
 
   @Test
+  public void naoDeveSalvarConfiguracoes() throws IOException {
+    final boolean existe = false;
+
+    doReturn(existe).when(manual).verifArquivoProperties();
+    manual.carregarConfiguracoes();
+
+    verify(manual).verifArquivoProperties();
+  }
+
+  @Test
   public void deveCarregarConfiguracoes() throws IOException {
     final boolean existe = true;
 
-    doReturn(existe).when(manual).arquivoPropertiesExiste();
+    doReturn(existe).when(manual).verifArquivoProperties();
     manual.carregarConfiguracoes();
 
-    verify(manual).arquivoPropertiesExiste();
+    verify(manual).verifArquivoProperties();
   }
 
   @Test
