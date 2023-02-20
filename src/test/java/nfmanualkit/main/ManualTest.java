@@ -3,6 +3,7 @@ package nfmanualkit.main;
 import nfmanualkit.entity.SchemaNfe;
 import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
+import nfmanualkit.util.Recursos;
 import nfmanualkit.view.ManualView;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -164,6 +165,30 @@ public class ManualTest {
 
     assertThat(matriz.length, is(lista.size()));
     assertThat(matriz[0][0], notNullValue());
+  }
+
+  @Test
+  public void deveListarPorFiltroComSQLException() throws SQLException {
+    final EFiltro eFiltro = EFiltro.IDGRUPO;
+    final String filtro = "termo do filtro";
+    final boolean matchCase = false;
+    final boolean ocorrenciaPalavra = false;
+    final SQLException sqlException = new SQLException("");
+    final String msg = Recursos.get("erro", sqlException.getMessage());
+
+    when(view.getSelectedEFiltro()).thenReturn(eFiltro);
+    when(view.isMatchCase()).thenReturn(matchCase);
+    when(view.isOcorrenciaPalavra()).thenReturn(ocorrenciaPalavra);
+    when(daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra)).thenThrow(sqlException);
+    doNothing().when(view).notificar(msg);
+    manual.listarPorFiltro(filtro);
+
+    verify(view).getSelectedEFiltro();
+    verify(view).isMatchCase();
+    verify(view).isOcorrenciaPalavra();
+    verify(daoPresenter).listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
+    verify(view).notificar(msg);
+    verifyNoMoreInteractions(daoPresenter, view);
   }
 
   @Test

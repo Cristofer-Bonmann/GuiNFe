@@ -22,4 +22,6 @@ public interface ManualView {
     void setMatchCaseSelected(boolean matchCase);
 
     void setOcorrenciaLetraSelected(boolean ocorrenciaLetra);
+
+    void notificar(String msg);
 }

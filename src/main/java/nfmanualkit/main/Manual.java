@@ -4,6 +4,7 @@ import nfmanualkit.entity.SchemaNfe;
 import nfmanualkit.enumeracao.EFiltro;
 import nfmanualkit.presenter.DaoPresenter;
 import nfmanualkit.connection.Dao;
+import nfmanualkit.util.Recursos;
 import nfmanualkit.view.ManualView;
 
 import java.io.File;
@@ -64,20 +65,25 @@ public class Manual {
    *
    * @throws SQLException
    */
-  public void listarPorFiltro(String filtro) throws SQLException {
-    final List<SchemaNfe> lista;
+  public void listarPorFiltro(String filtro) {
+    try {
+      final List<SchemaNfe> lista;
 
-    if (!filtro.trim().equals("")) {
-      final EFiltro eFiltro = view.getSelectedEFiltro();
-      final boolean matchCase = view.isMatchCase();
-      final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
-      lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
+      if (!filtro.trim().equals("")) {
+        final EFiltro eFiltro = view.getSelectedEFiltro();
+        final boolean matchCase = view.isMatchCase();
+        final boolean ocorrenciaPalavra = view.isOcorrenciaPalavra();
+        lista = daoPresenter.listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
 
-    } else {
-      lista = daoPresenter.listar();
+      } else {
+        lista = daoPresenter.listar();
+      }
+
+      view.exibir(lista);
+
+    } catch(SQLException sqle) {
+      view.notificar(Recursos.get("erro", sqle.getMessage()));
     }
-
-    view.exibir(lista);
   }
 
   /**

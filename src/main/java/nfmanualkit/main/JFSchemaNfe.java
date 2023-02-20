@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showOptionDialog;
 
 public class JFSchemaNfe extends JFrame implements ManualView {
@@ -71,6 +72,11 @@ public class JFSchemaNfe extends JFrame implements ManualView {
     @Override
     public void setOcorrenciaLetraSelected(boolean ocorrenciaLetra) {
         jtbOcorrenciaPalavra.setSelected(ocorrenciaLetra);
+    }
+
+    @Override
+    public void notificar(String msg) {
+        showMessageDialog(this, msg);
     }
 
     /**
@@ -168,12 +174,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
                 super.keyReleased(e);
 
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    try {
-                        manual.listarPorFiltro(jtfFiltro.getText());
-                    } catch (SQLException ex) {
-                        // TODO: 07/02/2023 exibir notificação.
-                        ex.printStackTrace();
-                    }
+                    manual.listarPorFiltro(jtfFiltro.getText());
                 }
             }
         });
@@ -204,23 +205,13 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
         jtbMatchCase.addActionListener(actionEvent -> {
             if (!jtfFiltro.getText().trim().equals("")) {
-                try {
-                    manual.listarPorFiltro(jtfFiltro.getText());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                    // TODO: 16/02/2023 exibir notificação.
-                }
+                manual.listarPorFiltro(jtfFiltro.getText());
             }
         });
 
         jtbOcorrenciaPalavra.addActionListener(actionEvent -> {
             if (!jtfFiltro.getText().trim().equals("")) {
-                try {
-                    manual.listarPorFiltro(jtfFiltro.getText());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                    // TODO: 16/02/2023 exibir notificação.
-                }
+                manual.listarPorFiltro(jtfFiltro.getText());
             }
         });
     }
