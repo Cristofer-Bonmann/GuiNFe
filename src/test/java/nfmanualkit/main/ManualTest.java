@@ -122,6 +122,24 @@ public class ManualTest {
   }
 
   @Test
+  public void naoDeveCarregarConfiguracoesComIOException() throws IOException {
+    criarConfProperties();
+    final boolean existe = true;
+    final IOException ioException = new IOException("");
+    final String msg = Recursos.get("erro", ioException.getMessage());
+
+    doReturn(existe).when(manual).verifArquivoProperties();
+    doThrow(ioException).when(manual).getProperties();
+    doNothing().when(view).notificar(msg);
+    manual.carregarConfiguracoes();
+
+    verify(manual).verifArquivoProperties();
+    verify(manual).getProperties();
+    verify(view).notificar(msg);
+    verifyNoMoreInteractions(view);
+  }
+
+  @Test
   public void deveCarregarConfiguracoes() throws IOException {
     criarConfProperties();
     final boolean existe = true;

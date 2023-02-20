@@ -146,13 +146,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
             public void windowOpened(WindowEvent e) {
                 super.windowOpened(e);
 
-                try {
-                    manual.carregarConfiguracoes();
-                    manual.listarTodos();
-
-                } catch (IOException ioe) {
-                    throw new RuntimeException(ioe);
-                }
+                manual.carregarConfiguracoes();
+                manual.listarTodos();
             }
 
             @Override

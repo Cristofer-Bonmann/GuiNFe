@@ -155,18 +155,23 @@ public class Manual {
    *
    * @throws IOException
    */
-  public void carregarConfiguracoes() throws IOException {
-    final boolean propertiesExiste = verifArquivoProperties();
-    if (propertiesExiste) {
-      final Properties properties = getProperties();
+  public void carregarConfiguracoes() {
+    try {
+      final boolean propertiesExiste = verifArquivoProperties();
+      if (propertiesExiste) {
+        final Properties properties = getProperties();
 
-      final EFiltro eFiltro = EFiltro.valueOf(properties.get("filtro_selecionado").toString());
-      final boolean matchCase = Boolean.parseBoolean(properties.get("matchcase").toString());
-      final boolean ocorrenciaLetra = Boolean.parseBoolean(properties.get("ocorrencia_letra").toString());
+        final EFiltro eFiltro = EFiltro.valueOf(properties.get("filtro_selecionado").toString());
+        final boolean matchCase = Boolean.parseBoolean(properties.get("matchcase").toString());
+        final boolean ocorrenciaLetra = Boolean.parseBoolean(properties.get("ocorrencia_letra").toString());
 
-      view.setSelectedEFiltro(eFiltro);
-      view.setMatchCaseSelected(matchCase);
-      view.setOcorrenciaLetraSelected(ocorrenciaLetra);
+        view.setSelectedEFiltro(eFiltro);
+        view.setMatchCaseSelected(matchCase);
+        view.setOcorrenciaLetraSelected(ocorrenciaLetra);
+      }
+
+    } catch(IOException ioe) {
+      view.notificar(Recursos.get("erro", ioe.getMessage()));
     }
   }
 
