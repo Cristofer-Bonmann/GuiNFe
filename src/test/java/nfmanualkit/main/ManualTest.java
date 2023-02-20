@@ -71,7 +71,6 @@ public class ManualTest {
     final EFiltro eFiltro = EFiltro.IDGRUPO;
     final boolean matchCase = true;
     final boolean ocorrenciaLetra = true;
-    final Properties properties = mock(Properties.class);
     final IOException ioException = new IOException("");
     final String msg = Recursos.get("erro", ioException.getMessage());
 
@@ -249,6 +248,23 @@ public class ManualTest {
     verify(view).isOcorrenciaPalavra();
     verify(daoPresenter).listar(eFiltro, filtro, matchCase, ocorrenciaPalavra);
     verify(view).exibir(lista);
+    verifyNoMoreInteractions(daoPresenter, view);
+  }
+
+  @Test
+  public void naoDeveListarTodosComSQLException() throws SQLException {
+    final String filtro = "";
+    final SQLException sqlException = new SQLException("");
+    final String msg = Recursos.get("erro", sqlException.getMessage());
+
+    when(view.getFiltro()).thenReturn(filtro);
+    when(daoPresenter.listar()).thenThrow(sqlException);
+    doNothing().when(view).notificar(msg);
+    manual.listarTodos();
+
+    verify(view).getFiltro();
+    verify(daoPresenter).listar();
+    verify(view).notificar(msg);
     verifyNoMoreInteractions(daoPresenter, view);
   }
 

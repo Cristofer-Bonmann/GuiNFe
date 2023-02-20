@@ -152,9 +152,6 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
                 } catch (IOException ioe) {
                     throw new RuntimeException(ioe);
-                } catch (SQLException ex) {
-                    // TODO: 08/02/2023 exibir notificação.
-                    throw new RuntimeException(ex);
                 }
             }
 
@@ -179,12 +176,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                try {
-                    manual.listarTodos();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    // TODO: 11/02/2023 exibir notificação
-                }
+                manual.listarTodos();
             }
         });
 

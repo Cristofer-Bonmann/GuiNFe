@@ -49,11 +49,15 @@ public class Manual {
    *
    * @throws SQLException
    */
-  public void listarTodos() throws SQLException {
-    final String filtro = view.getFiltro();
-    if (filtro.trim().equals("")) {
-      final List<SchemaNfe> lista = daoPresenter.listar();
-      view.exibir(lista);
+  public void listarTodos() {
+    try {
+      final String filtro = view.getFiltro();
+      if (filtro.trim().equals("")) {
+        final List<SchemaNfe> lista = daoPresenter.listar();
+        view.exibir(lista);
+      }
+    } catch (SQLException sqle) {
+      view.notificar(Recursos.get("erro", sqle.getMessage()));
     }
   }
 
