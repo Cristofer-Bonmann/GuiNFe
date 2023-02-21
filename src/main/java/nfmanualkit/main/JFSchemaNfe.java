@@ -238,7 +238,7 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jspSchemaNfe = new JScrollPane(jtSchemaNfe);
         JTableAjusteColunas.alinharHeader(jtSchemaNfe);
 
-        final Font font = new Font("Dialog", Font.BOLD, 17);
+        final Font font = new Font("Dialog", Font.BOLD, 15);
         jlAtualizacaoTecnica = new JLabel(Recursos.get("jlatualizacaotecnica", Sistema.ATUALIZACAO_TECNICA));
         jlAtualizacaoTecnica.setFont(font);
         jlVersao = new JLabel(Recursos.get("jlversao"));
@@ -255,6 +255,14 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jpTopII.add(jtfFiltro);
         jpTopII.add(jtbMatchCase);
         jpTopII.add(jtbOcorrenciaPalavra);
+        jpTopII.add(new JLabel(new ImageIcon(this.getClass().getResource("/img/information-20px.png"))));
+        /*
+        final JPanel jpTopPesquisa = new JPanel(new FlowLayout());
+        jpTopPesquisa.add(jcbFiltro);
+        jpTopPesquisa.add(jtfFiltro);
+        jpTopPesquisa.add(jtbMatchCase);
+        jpTopPesquisa.add(jtbOcorrenciaPalavra);
+        jpTopPesquisa.add(new JLabel(new ImageIcon(this.getClass().getResource("/img/information-20px.png"))));*/
 
         jpSouth.add(jlAtualizacaoTecnica, BorderLayout.WEST);
         jpSouth.add(jlVersao, BorderLayout.EAST);
