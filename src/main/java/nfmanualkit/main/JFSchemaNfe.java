@@ -6,6 +6,8 @@ import nfmanualkit.util.*;
 import nfmanualkit.view.ManualView;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -197,12 +199,35 @@ public class JFSchemaNfe extends JFrame implements ManualView {
                 manual.listarPorFiltro(jtfFiltro.getText());
             }
         });
+
+        jlInformacao.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                final JDSobre jdSobre = new JDSobre(JFSchemaNfe.this);
+                jdSobre.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                jlInformacao.setBorder(lbBlack);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                jlInformacao.setBorder(null);
+            }
+        });
     }
 
     private JComboBox<EFiltro> jcbFiltro;
     private JTextField jtfFiltro;
     private JToggleButton jtbMatchCase;
     private JToggleButton jtbOcorrenciaPalavra;
+    private JLabel jlInformacao;
+    private ImageIcon icInfo = new ImageIcon(getClass().getResource("/img/information-20px.png"));
+    private LineBorder lbBlack = new LineBorder(Color.BLACK, 1);
     private JScrollPane jspSchemaNfe;
     private JTable jtSchemaNfe;
     private JTable jtSchemaNfeLateral;
@@ -233,6 +258,8 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jtbOcorrenciaPalavra = new JToggleButton("P");
         jtbOcorrenciaPalavra.setPreferredSize(new Dimension(60, 25));
 
+        jlInformacao = new JLabel(icInfo);
+
         jtSchemaNfe = new JTable();
         jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jspSchemaNfe = new JScrollPane(jtSchemaNfe);
@@ -250,19 +277,19 @@ public class JFSchemaNfe extends JFrame implements ManualView {
         jtSchemaNfeLateral.setDefaultRenderer(Object.class, new TableCellRendererHeader(jtSchemaNfe));
         jspSchemaNfe.setRowHeaderView(jtSchemaNfeLateral);
 
-        jpTopII.setLayout(new FlowLayout(FlowLayout.LEFT));
-        jpTopII.add(jcbFiltro);
-        jpTopII.add(jtfFiltro);
-        jpTopII.add(jtbMatchCase);
-        jpTopII.add(jtbOcorrenciaPalavra);
-        jpTopII.add(new JLabel(new ImageIcon(this.getClass().getResource("/img/information-20px.png"))));
-        /*
-        final JPanel jpTopPesquisa = new JPanel(new FlowLayout());
+        jpTopII.setLayout(new BorderLayout());
+
+        final JPanel jpTopPesquisa = new JPanel(new FlowLayout(FlowLayout.LEFT));
         jpTopPesquisa.add(jcbFiltro);
         jpTopPesquisa.add(jtfFiltro);
         jpTopPesquisa.add(jtbMatchCase);
         jpTopPesquisa.add(jtbOcorrenciaPalavra);
-        jpTopPesquisa.add(new JLabel(new ImageIcon(this.getClass().getResource("/img/information-20px.png"))));*/
+
+        final JPanel jpTopInformacao = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
+        jpTopInformacao.add(jlInformacao);
+
+        jpTopII.add(jpTopPesquisa, BorderLayout.WEST);
+        jpTopII.add(jpTopInformacao, BorderLayout.EAST);
 
         jpSouth.add(jlAtualizacaoTecnica, BorderLayout.WEST);
         jpSouth.add(jlVersao, BorderLayout.EAST);
