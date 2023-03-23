@@ -4,7 +4,7 @@ trello
 
 db/*.db
 db/*.db-journal
-NFManualKIt.iml
+guinfe.iml
 conf.properties
 .attach_*
 fontes.txt
