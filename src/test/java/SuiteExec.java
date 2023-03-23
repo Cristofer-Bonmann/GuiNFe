@@ -1,7 +1,7 @@
-import nfmanualkit.connection.ConnectTest;
-import nfmanualkit.connection.DaoTest;
-import nfmanualkit.enumeracao.EFiltroTest;
-import nfmanualkit.main.ManualTest;
+import guinfe.connection.ConnectTest;
+import guinfe.connection.DaoTest;
+import guinfe.enumeracao.EFiltroTest;
+import guinfe.main.ManualTest;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
