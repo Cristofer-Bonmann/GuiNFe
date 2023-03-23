@@ -128,7 +128,7 @@ public class DaoTest {
     final String query = dao.montarQuery(EFiltro.CAMPO, matchCase, ocorrenciaPalavra);
 
     final String esperado = "SELECT * FROM schema_nfe WHERE lower(campo) = ? OR lower(pai) = " +
-            "(SELECT idGrupo FROM schema_nfe WHERE lower(campo) = ? ORDER BY id LIMIT 1)" +
+            "(SELECT lower(idGrupo) FROM schema_nfe WHERE lower(campo) = ? ORDER BY id LIMIT 1)" +
             " ORDER BY id";
     assertThat(query, is(esperado));
   }

@@ -127,14 +127,13 @@ public class Dao implements DaoPresenter {
       case CAMPO:
         query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? OR "
                 + EFiltro.PAI.getFiltro(matchCase) + operador +
-        "(SELECT idGrupo FROM schema_nfe WHERE " + EFiltro.CAMPO.getFiltro(matchCase) + operador + "? " +
+        "(SELECT "+ (matchCase ? "idGrupo" : "lower(idGrupo)") + " FROM schema_nfe WHERE " + EFiltro.CAMPO.getFiltro(matchCase) + operador + "? " +
                 "ORDER BY id LIMIT 1) ORDER BY id";
         break;
 
       default:
       query = "SELECT * FROM schema_nfe WHERE " + eFiltro.getFiltro(matchCase) + operador + "? ORDER BY id";
     }
-
     return query;
   }
 
