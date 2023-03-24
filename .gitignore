@@ -1,6 +1,6 @@
 .idea
 target
-trello
+jkanban
 
 db/*.db
 db/*.db-journal

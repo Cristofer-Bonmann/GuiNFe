@@ -58,6 +58,7 @@
                 </executions>
             </plugin>
 
+            <!--Copia as licenças das dependências para o diretório 'licenses'-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -72,8 +73,8 @@
                 </executions>
                 <configuration>
                     <licensesOutputFileEncoding>UTF-8</licensesOutputFileEncoding>
-                    <outputDirectory>${basedir}</outputDirectory>
-                    <licensesDirectory>${basedir}</licensesDirectory>
+                    <licensesOutputDirectory>${project.basedir}/licenses</licensesOutputDirectory>
+                    <licensesOutputFile>${project.basedir}/licenses/licenses.xml</licensesOutputFile>
                 </configuration>
             </plugin>
         </plugins>
