@@ -108,13 +108,22 @@ public class TableModel<T> extends AbstractTableModel {
     }
   }
 
-  // TODO: 08/02/2023 inserir doc
+  /**
+   * Atribuí uma nova lista neste model e dispara o evento de atualização dos dados da tabela.
+   *
+   * @param lista lista de itens.
+   */
   public void novaLista(List<T> lista) {
     this.list = lista;
     fireTableDataChanged();
   }
 
-  // TODO: 08/02/2023 inserir doc
+  /**
+   * Retorna o objeto da lista de um índice específico.
+   *
+   * @param row índice da lista.
+   * @return objeto da lista.
+   */
   public T getValue(int row) {
     return list.get(row);
   }
