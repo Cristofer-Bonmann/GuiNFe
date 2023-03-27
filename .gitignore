@@ -1,6 +1,6 @@
 .idea
 target
-jkanban
+kanban
 
 db/*.db
 db/*.db-journal
