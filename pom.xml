@@ -34,6 +34,7 @@
                 <configuration>
                     <finalName>guinfe</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>${project.basedir}/</outputDirectory>
 
                     <archive>
                         <manifest>
