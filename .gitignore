@@ -2,7 +2,6 @@
 target
 kanban
 
-db/*.db
 db/*.db-journal
 guinfe.iml
 conf.properties

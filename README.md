@@ -13,9 +13,15 @@ ser encontrado [aqui](https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?c
 
 Apenas copie o código fonte, faça suas alterções e mande um Pull Request.
 
-## Executar o Código Fonte
+## Executar
 
-Copie o código fonte e execute a classe 'guinfe.main.Main'.
+Versão do Java: JDK 17
+
+Baixe os arquivos 'guinfe.jar', o diretório 'db' e execute o JAR. 
+
+Em ambiente Linux use: java -jar guinfe.jar
+
+Ou, faça um clone do código fonte e execute a classe 'guinfe.main.Main'.
 
 ## Licença
 
