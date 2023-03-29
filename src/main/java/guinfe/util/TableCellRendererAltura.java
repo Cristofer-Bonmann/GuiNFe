@@ -5,7 +5,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 /**
- * Classe responsável por redimensionar a altura das linha de um componente {@link JTable} dinâmicamente.
+ * Classe responsável por redimensionar a altura das linhas de um componente {@link JTable} dinâmicamente.
  *
  * <pre>
  *   final {@link JTable} jTable = new JTable();
