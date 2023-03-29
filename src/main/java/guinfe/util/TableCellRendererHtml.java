@@ -8,7 +8,7 @@ import java.awt.*;
 
 /**
  * Classe reponsável por aplicar HTML no conteúdo das células de uma coluna específica de uma JTable. Também substitui
- * o caractere de quebra de linha do Java("\\n") para quebra de linha do HTML(br) e altera a cor das células.
+ * o caractere de quebra de linha do Java("\\n") para quebra de linha do HTML(br) na coluna de n.º8 e altera a cor das células.
  *
  * <pre>
  *   Como usar:
@@ -41,7 +41,6 @@ public class TableCellRendererHtml extends DefaultTableCellRenderer {
     final guinfe.util.TableModel tableModel = (guinfe.util.TableModel) table.getModel();
     final SchemaNfe schemaNfe = (SchemaNfe) tableModel.getValue(row);
 
-
     if (schemaNfe != null && schemaNfe.getIdGrupo().equals("ID")) {
       label.setBackground(Color.LIGHT_GRAY);
 
@@ -56,7 +55,7 @@ public class TableCellRendererHtml extends DefaultTableCellRenderer {
       }
     }
 
-    if (column == 9) {
+    if (column == 8) {
       label.setText("<html>" + value.toString().replace("\\n", "<br>") + "</html>");
     }
 
