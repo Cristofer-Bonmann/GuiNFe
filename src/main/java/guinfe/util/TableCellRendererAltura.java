@@ -75,7 +75,7 @@ public class TableCellRendererAltura implements TableCellRenderer {
    * maior altura e aplica essa altura para todas as cálulas da linha.
    * </p>
    */
-  public void adjustRowHeights() {
+  public void ajustar() {
 
     for (int row = 0; row < table.getRowCount(); row++) {
       int height = table.getRowHeight();

@@ -34,7 +34,7 @@ public class JFGuiNFe extends JFrame implements ManualView {
     public void exibir(List<SchemaNfe> lista) {
         tmSchemaNfe.novaLista(lista);
         JTableAjusteLarguraColunas.ajustar(jtSchemaNfe);
-        tcrAltura.adjustRowHeights();
+        tcrAltura.ajustar();
         ajustarAlturaLateral(lista);
     }
 
