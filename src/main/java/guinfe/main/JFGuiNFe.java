@@ -33,7 +33,7 @@ public class JFGuiNFe extends JFrame implements ManualView {
     @Override
     public void exibir(List<SchemaNfe> lista) {
         tmSchemaNfe.novaLista(lista);
-        JTableAjusteColunas.ajustarColunas(jtSchemaNfe);
+        JTableAjusteLarguraColunas.ajustar(jtSchemaNfe);
         tcrAltura.adjustRowHeights();
         ajustarAlturaLateral(lista);
     }
@@ -260,7 +260,7 @@ public class JFGuiNFe extends JFrame implements ManualView {
         jtSchemaNfe = new JTable();
         jtSchemaNfe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jspSchemaNfe = new JScrollPane(jtSchemaNfe);
-        JTableAjusteColunas.alinharHeader(jtSchemaNfe);
+        JTableAjusteLarguraColunas.alinharHeader(jtSchemaNfe);
 
         final Font font = new Font("Dialog", Font.BOLD, 15);
         jlAtualizacaoTecnica = new JLabel(Recursos.get("jlatualizacaotecnica", Sistema.ATUALIZACAO_TECNICA));

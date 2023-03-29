@@ -15,15 +15,15 @@ import java.awt.*;
  *
  * <pre>
  *   private JTable jTable = new JTable();
- *   {@link JTableAjusteColunas}.ajustarColunas(jTable);
+ *   {@link JTableAjusteLarguraColunas}.ajustarColunas(jTable);
  * </pre>
  */
-public class JTableAjusteColunas {
+public class JTableAjusteLarguraColunas {
 
   /**
    * Construtor privado da classe.
    */
-  private JTableAjusteColunas(){}
+  private JTableAjusteLarguraColunas(){}
 
   /**
    * Percorre as colunas de um {@link TableColumn} e verifica qual célula possue o conteúdo com a largura. Essa largura
@@ -31,7 +31,7 @@ public class JTableAjusteColunas {
    *
    * @param jTable componente onde será aplicado e redimensionamento da largura.
    */
-  public static void ajustarColunas(JTable jTable) {
+  public static void ajustar(JTable jTable) {
     jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
     for (int column = 0; column < jTable.getColumnCount(); column++) {
