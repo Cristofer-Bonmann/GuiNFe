@@ -7,10 +7,7 @@ import guinfe.connection.Dao;
 import guinfe.util.Recursos;
 import guinfe.view.ManualView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
@@ -221,7 +218,13 @@ public class Manual {
     final File confProperties = new File(path);
 
     if (!confProperties.exists()) {
-      confProperties.createNewFile();
+      final OutputStream outputStream = new FileOutputStream(confProperties);
+
+      final Properties properties = new Properties();
+      properties.put("filtro_selecionado", "TODOS");
+      properties.put("matchcase", "false");
+      properties.put("ocorrencia_letra", "true");
+      properties.store(outputStream, "");
     }
 
     return confProperties.exists();
